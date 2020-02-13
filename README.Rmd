@@ -1,0 +1,36 @@
+---
+output:
+  md_document:
+    variant: gfm
+---
+
+# rstatswales
+
+rstatswales is a package for downloading data from StatsWales to your R environment. This functionality
+is limited to datasets that are available through the OData feed. You can check this by navigating to your
+desired dataset, scrolling to the bottom, and checking that the "Dataset" link is available under the Open Data tab.
+
+## Installation
+
+**This package is still in development**. You can install the latest version of rstatswales from GitHub with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("jamie-ralph/rstatswales")
+```
+## Example
+
+In the code below, I'm extracting data on [aircraft movement at Cardiff airport]("https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year").
+
+```{r example, message = FALSE, warning = FALSE, results="hide"}
+library(rstatswales)
+
+df <- rstatswales::get_dataset("tran0003")
+```
+
+```{r}
+
+str(df)
+
+```
+
