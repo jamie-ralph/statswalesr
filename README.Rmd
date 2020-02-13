@@ -20,7 +20,7 @@ devtools::install_github("jamie-ralph/rstatswales")
 ```
 ## Example
 
-In the code below, I'm extracting data on [aircraft movement at Cardiff airport]("https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year").
+In the code below, I'm extracting data on [aircraft movement at Cardiff airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year).
 
 ```{r example, message = FALSE, warning = FALSE, results="hide"}
 library(rstatswales)
