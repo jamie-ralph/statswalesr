@@ -20,9 +20,12 @@ devtools::install_github("jamie-ralph/rstatswales")
 
 In the code below, I’m extracting data on [aircraft movement at Cardiff
 airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year).
+I’m also extracting the available metadata.
 
 ``` r
 library(rstatswales)
+
+metadata <- rstatswales::get_metadata("tran0003")
 
 df <- rstatswales::get_dataset("tran0003")
 ```
