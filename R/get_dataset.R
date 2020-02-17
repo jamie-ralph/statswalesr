@@ -17,7 +17,7 @@ get_dataset <- function(id) {
 
   # Define dataset URL --------------------------------------------------------------
 
-  url <- paste0("http://open.statswales.gov.wales/en-gb/dataset/", id)
+  url <- paste0("http://open.statswales.gov.wales/en-gb/dataset/", tolower(id))
 
 
   # Extract first page and add dataframe to list ------------------------------------------------------
