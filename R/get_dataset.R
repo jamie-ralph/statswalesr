@@ -32,9 +32,8 @@ get_dataset <- function(id) {
 
 
 
-    stop("The dataset requested was not retrieved. Check your dataset
-    id for typos and that you have an internet connection. If your problem persists,
-    check that the dataset is available in your browser.")
+    stop("The requested dataset was not found. Check your dataset
+    id for typos and that you have an internet connection.")
 
     }
 
