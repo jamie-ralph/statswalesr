@@ -4,15 +4,16 @@
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 #'
 #' @param id A dataset id as a string
+#' @param print_prog logical. Should progress be printed in the console?
 #' @return If the dataset id is valid, the output will be
 #'     the requested dataset in a dataframe. If the id is not
-#'     valid, the function will return an HTTP error.
+#'     valid, the function will return an error.
 #' @examples
 #' data <- get_dataset("hlth0515")
 #'
 #' @export
 
-get_dataset <- function(id) {
+get_dataset <- function(id, print_prog = FALSE) {
 
 
   # Define dataset URL --------------------------------------------------------------
@@ -23,6 +24,8 @@ get_dataset <- function(id) {
   # Extract first page and add dataframe to list ------------------------------------------------------
 
   json_data <- try(jsonlite::fromJSON(txt = url))
+
+  # A returned list means the dataset has been found
 
   if (class(json_data) == "list") {
 
@@ -43,9 +46,13 @@ get_dataset <- function(id) {
 
   while ("odata.nextLink" %in% names(json_data)) {
 
+    if(print_prog == TRUE) {
+
     i = i + 1
 
     writeLines(paste0("Extracting data from next page (", i, ")"))
+
+    }
 
     json_data <- jsonlite::fromJSON(txt = json_data$odata.nextLink)
 

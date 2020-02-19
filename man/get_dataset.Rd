@@ -4,15 +4,17 @@
 \alias{get_dataset}
 \title{Retrieve dataset from StatsWales}
 \usage{
-get_dataset(id)
+get_dataset(id, print_prog = FALSE)
 }
 \arguments{
 \item{id}{A dataset id as a string}
+
+\item{print_prog}{logical. Should progress be printed in the console?}
 }
 \value{
 If the dataset id is valid, the output will be
     the requested dataset in a dataframe. If the id is not
-    valid, the function will return an HTTP error.
+    valid, the function will return an error.
 }
 \description{
 \code{get_dataset} returns a dataframe from
