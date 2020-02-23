@@ -1,4 +1,4 @@
-#' Retrieve dataset from StatsWales
+#' Retrieve datasets from the StatsWales OData API
 #'
 #' \code{get_dataset} returns a dataframe from
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
