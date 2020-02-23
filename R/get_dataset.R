@@ -3,9 +3,9 @@
 #' \code{get_dataset} returns a dataframe from
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 #'
-#' @param id A dataset id
+#' @param id A dataset id. Must be a single string.
 #' @param print_prog logical. Should progress be printed in the console?
-#' @return If the dataset id is valid, the output will be
+#' @return If the dataset id is valid, the function will return
 #'     the requested dataset in a dataframe. If the id is not
 #'     valid, the function will return an error.
 #' @examples
