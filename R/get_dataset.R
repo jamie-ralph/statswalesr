@@ -15,13 +15,13 @@
 
 get_dataset <- function(id, print_prog = FALSE) {
 
+  stopifnot(is.character(id))
 
-  # Define dataset URL --------------------------------------------------------------
+  # Define dataset URL --------------------------------------------------------
 
   url <- paste0("http://open.statswales.gov.wales/en-gb/dataset/", tolower(id))
 
-
-  # Extract first page and add dataframe to list ------------------------------------------------------
+  # Extract first page and add dataframe to list ------------------------------
 
   json_data <- try(jsonlite::fromJSON(txt = url))
 
@@ -29,16 +29,12 @@ get_dataset <- function(id, print_prog = FALSE) {
 
   if (class(json_data) == "list") {
 
-  json_list = list(json_data$value)
+    json_list = list(json_data$value)
 
   } else {
 
-
-
     stop("The requested dataset was not found. Check your dataset
-    id for typos and that you have an internet connection.")
-
-    }
+    id for typos and that you have an internet connection.") }
 
 
   # Loop through odata links to get all data --------------------------------
@@ -50,7 +46,7 @@ get_dataset <- function(id, print_prog = FALSE) {
 
     i = i + 1
 
-    writeLines(paste0("Extracting data from next page (", i, ")"))
+    cat("Extracting data from next page (", i, ")", "\n")
 
     }
 
