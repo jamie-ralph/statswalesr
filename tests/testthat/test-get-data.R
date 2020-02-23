@@ -13,3 +13,7 @@ test_that("invalid id returns an error", {
 test_that("numeric input returns an error", {
   expect_error(statswalesr::get_dataset(1234))
   })
+
+test_that("vector of valid ids returns an error", {
+  expect_error(statswalesr::get_dataset(c("Econ0072", "Hlth0019")))
+  })
