@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_dataset.R
 \name{get_dataset}
 \alias{get_dataset}
-\title{Retrieve a dataset from the StatsWales OData API}
+\title{Retrieves a dataset from the StatsWales OData API}
 \usage{
 get_dataset(id, print_prog = FALSE)
 }
@@ -12,13 +12,15 @@ get_dataset(id, print_prog = FALSE)
 \item{print_prog}{logical. Should progress be printed in the console?}
 }
 \value{
-If the dataset id is valid, the function will return
-    the requested dataset in a dataframe. If the id is not
-    valid, the function will return an error.
+If the dataset id is valid, the function will return the requested
+dataset in a dataframe. If the id is not valid, the function will return
+an error.
 }
 \description{
 \code{get_dataset} returns a dataframe from
-\href{https://statswales.gov.wales}{StatsWales} using a dataset id.
+\href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
+\code{print_prog} argument can be set to \code{TRUE} to keep track of
+progress when extracting a large dataset.
 }
 \examples{
 data <- get_dataset("hlth0515")
