@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_dataset.R
 \name{get_dataset}
 \alias{get_dataset}
-\title{Retrieve dataset from StatsWales}
+\title{Retrieve a dataset from the StatsWales OData API}
 \usage{
 get_dataset(id, print_prog = FALSE)
 }

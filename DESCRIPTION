@@ -1,4 +1,4 @@
-Package: rstatswales
+Package: statswalesr
 Type: Package
 Title: Provides Functions For Easily Extracting Data From StatsWales
 Version: 0.0.900

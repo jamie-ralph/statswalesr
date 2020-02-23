@@ -1,4 +1,4 @@
-#' Retrieve datasets from the StatsWales OData API
+#' Retrieve a dataset from the StatsWales OData API
 #'
 #' \code{get_dataset} returns a dataframe from
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
@@ -46,7 +46,7 @@ get_dataset <- function(id, print_prog = FALSE) {
 
       i = i + 1
 
-      cat("Extracting data from next page (", i, ")", "\n")
+      message("Extracting data from next page (", i, ")")
 
     }
 
@@ -54,14 +54,13 @@ get_dataset <- function(id, print_prog = FALSE) {
 
     json_list <- c(json_list, list(json_data$value))
 
-
   }
 
   # rbind dataframes together and tell user the data is extracted
 
   df <- do.call(rbind, json_list)
 
-  cat("All data extracted", "\n")
+  message("Dataset was extracted successfully.")
 
   # Return the dataframe
 

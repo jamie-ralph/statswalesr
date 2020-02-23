@@ -1,33 +1,33 @@
-# rstatswales
+# statswalesr
 
-rstatswales is a package for downloading data from StatsWales to your R
-environment. This functionality is limited to datasets that are
-available through the OData feed. You can check this by navigating to
-your desired dataset, scrolling to the bottom, and checking that the
+statswalesr is a package for downloading datasets and their associated
+metadata from StatsWales. This functionality is limited to datasets that
+are available through the OData feed. You can check this by navigating
+to your desired dataset, scrolling to the bottom, and checking that the
 “Dataset” link is available under the Open Data tab.
 
 ## Installation
 
 **This package is still in development**. You can install the latest
-version of rstatswales from GitHub with:
+version of statswalesr from GitHub with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jamie-ralph/rstatswales")
+devtools::install_github("jamie-ralph/statswalesr")
 ```
 
 ## Example
 
-In the code below, I’m extracting data on [aircraft movement at Cardiff
-airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year).
-I’m also extracting the available metadata.
+The code below extracts data about [aircraft movement at Cardiff
+airport](https://statswales.gov.wales/Catalogue/Transport/Air/%20aircraftmovementsatcardiffairport-by-movementtype-year)
+and the associated metadata.
 
 ``` r
-library(rstatswales)
+library(statswalesr)
 
-metadata <- rstatswales::get_metadata("tran0003")
+metadata <- statswalesr::get_metadata("tran0003")
 
-df <- rstatswales::get_dataset("tran0003")
+df <- statswalesr::get_dataset("tran0003")
 ```
 
 ``` r

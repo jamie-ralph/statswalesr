@@ -1,4 +1,4 @@
 library(testthat)
-library(rstatswales)
+library(statswalesr)
 
-test_check("rstatswales")
+test_check("statswalesr")
