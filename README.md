@@ -19,7 +19,7 @@ devtools::install_github("jamie-ralph/statswalesr")
 ## Example
 
 The code below extracts data about [aircraft movement at Cardiff
-airport](https://statswales.gov.wales/Catalogue/Transport/Air/%20aircraftmovementsatcardiffairport-by-movementtype-year)
+airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year)
 and the associated metadata.
 
 ``` r
