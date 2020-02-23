@@ -44,9 +44,9 @@ get_dataset <- function(id, print_prog = FALSE) {
 
     if(print_prog == TRUE) {
 
-    i = i + 1
+      i = i + 1
 
-    cat("Extracting data from next page (", i, ")", "\n")
+      cat("Extracting data from next page (", i, ")", "\n")
 
     }
 
@@ -61,9 +61,9 @@ get_dataset <- function(id, print_prog = FALSE) {
 
   df <- do.call(rbind, json_list)
 
-  writeLines("All data extracted")
+  cat("All data extracted", "\n")
 
-  # Return the data
+  # Return the dataframe
 
   df
 
