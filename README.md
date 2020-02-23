@@ -1,3 +1,9 @@
+<!-- badges: start -->
+
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=master&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr)
+<!-- badges: end -->
+
 # statswalesr
 
 statswalesr is a package for downloading datasets and their associated
