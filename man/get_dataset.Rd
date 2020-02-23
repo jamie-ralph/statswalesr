@@ -7,12 +7,12 @@
 get_dataset(id, print_prog = FALSE)
 }
 \arguments{
-\item{id}{A dataset id as a string}
+\item{id}{A dataset id. Must be a single string.}
 
 \item{print_prog}{logical. Should progress be printed in the console?}
 }
 \value{
-If the dataset id is valid, the output will be
+If the dataset id is valid, the function will return
     the requested dataset in a dataframe. If the id is not
     valid, the function will return an error.
 }
