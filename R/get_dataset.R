@@ -3,7 +3,7 @@
 #' \code{get_dataset} returns a dataframe from
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 #'
-#' @param id A dataset id as a string
+#' @param id A dataset id
 #' @param print_prog logical. Should progress be printed in the console?
 #' @return If the dataset id is valid, the output will be
 #'     the requested dataset in a dataframe. If the id is not
@@ -15,7 +15,7 @@
 
 get_dataset <- function(id, print_prog = FALSE) {
 
-  stopifnot(is.character(id))
+  stopifnot(is.character(id) & length(id) == 1)
 
   # Define dataset URL --------------------------------------------------------
 
