@@ -4,12 +4,12 @@
 \alias{get_dataset}
 \title{Retrieves a dataset from the StatsWales OData API}
 \usage{
-get_dataset(id, print_prog = FALSE)
+get_dataset(id, print_progress = FALSE)
 }
 \arguments{
 \item{id}{A dataset id. Must be a single string.}
 
-\item{print_prog}{logical. Should progress be printed in the console?}
+\item{print_progress}{logical. Should progress be printed in the console?}
 }
 \value{
 If the dataset id is valid, the function will return the requested
@@ -19,7 +19,7 @@ an error.
 \description{
 \code{get_dataset} returns a dataframe from
 \href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
-\code{print_prog} argument can be set to \code{TRUE} to keep track of
+\code{print_progress} argument can be set to \code{TRUE} to keep track of
 progress when extracting a large dataset.
 }
 \examples{

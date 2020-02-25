@@ -2,11 +2,11 @@
 #'
 #' \code{get_dataset} returns a dataframe from
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
-#' \code{print_prog} argument can be set to \code{TRUE} to keep track of
+#' \code{print_progress} argument can be set to \code{TRUE} to keep track of
 #' progress when extracting a large dataset.
 #'
 #' @param id A dataset id. Must be a single string.
-#' @param print_prog logical. Should progress be printed in the console?
+#' @param print_progress logical. Should progress be printed in the console?
 #' @return If the dataset id is valid, the function will return the requested
 #' dataset in a dataframe. If the id is not valid, the function will return
 #' an error.
@@ -15,7 +15,7 @@
 #'
 #' @export
 
-get_dataset <- function(id, print_prog = FALSE) {
+get_dataset <- function(id, print_progress = FALSE) {
 
   stopifnot(is.character(id) & length(id) == 1)
 
@@ -44,7 +44,7 @@ get_dataset <- function(id, print_prog = FALSE) {
 
   while ("odata.nextLink" %in% names(json_data)) {
 
-    if(print_prog == TRUE) {
+    if(print_progress == TRUE) {
 
       i = i + 1
 
