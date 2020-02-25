@@ -35,8 +35,8 @@ get_dataset <- function(id, print_progress = FALSE) {
 
   } else {
 
-    stop("The requested dataset was not found. Check your dataset
-    id for typos and that you have an internet connection.") }
+    stop("Dataset was not found. Check your dataset id for typos and that
+         you have an internet connection.") }
 
 
   # Loop through odata links to get all data --------------------------------
