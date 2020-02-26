@@ -1,6 +1,6 @@
 #' Retrieves a dataset from the StatsWales OData API
 #'
-#' \code{get_dataset} returns a dataframe from
+#' \code{statswales_get_dataset} returns a dataframe from
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
 #' \code{print_progress} argument can be set to \code{TRUE} to keep track of
 #' progress when extracting a large dataset.
@@ -11,11 +11,11 @@
 #' dataset in a dataframe. If the id is not valid, the function will return
 #' an error.
 #' @examples
-#' data <- get_dataset("hlth0515")
+#' data <- statswales_get_dataset("hlth0515")
 #'
 #' @export
 
-get_dataset <- function(id, print_progress = FALSE) {
+statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   stopifnot(is.character(id) & length(id) == 1)
 
