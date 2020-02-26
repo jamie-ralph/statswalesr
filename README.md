@@ -25,9 +25,9 @@ and the associated metadata.
 ``` r
 library(statswalesr)
 
-metadata <- statswalesr::get_metadata("tran0003")
+metadata <- statswalesr::statswales_get_metadata("tran0003")
 
-df <- statswalesr::get_dataset("tran0003")
+df <- statswalesr::statswales_get_dataset("tran0003")
 ```
 
 ``` r
