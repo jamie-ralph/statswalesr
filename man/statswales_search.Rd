@@ -4,13 +4,10 @@
 \alias{statswales_search}
 \title{Search StatsWales datasets}
 \usage{
-statswales_search(search_text, lang.option = "en-gb")
+statswales_search(search_text)
 }
 \arguments{
 \item{search_text}{A vector of search terms. Must be character only.}
-
-\item{lang.option}{Which language should the datasets
-be returned in? Accepts either "english" or "welsh"}
 }
 \value{
 A dataframe of StatsWales dataset titles and IDs.
