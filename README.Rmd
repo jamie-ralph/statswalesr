@@ -46,6 +46,8 @@ data on farming or agriculture I could do the following:
 library(dplyr)
 
 farming_datasets <- statswales_search(c("farm*", "agri*"))
+```
 
+```{r}
 glimpse(farming_datasets)
 ```

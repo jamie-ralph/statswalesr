@@ -54,6 +54,13 @@ wanted data on farming or agriculture I could do the following:
 library(dplyr)
 
 farming_datasets <- statswales_search(c("farm*", "agri*"))
+```
 
+``` r
 glimpse(farming_datasets)
 ```
+
+    ## Observations: 29
+    ## Variables: 2
+    ## $ Description_ENG <chr> "Children's services: Welfare/health summary", "Chi...
+    ## $ Dataset         <chr> "care0021", "care0022", "tran0169", "agri0200", "ag...
