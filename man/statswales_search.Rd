@@ -7,7 +7,7 @@
 statswales_search(search_text)
 }
 \arguments{
-\item{search_text}{A vector of search terms. Must be character only.}
+\item{search_text}{A vector of search terms.}
 }
 \value{
 A dataframe of StatsWales dataset titles and IDs.

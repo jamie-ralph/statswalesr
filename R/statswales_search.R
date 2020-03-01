@@ -4,7 +4,7 @@
 #' \href{https://statswales.gov.wales}{StatsWales}, based on the user's
 #' text input.
 #'
-#' @param search_text A vector of search terms. Must be character only.
+#' @param search_text A vector of search terms.
 #' @return A dataframe of StatsWales dataset titles and IDs.
 #'
 #' @examples
@@ -22,6 +22,8 @@ statswales_search <- function(search_text) {
   filtered_df <- datasets_df[grepl(paste(search_text, collapse = "|"),
                      datasets_df$Description_ENG, ignore.case = T),
                      c("Description_ENG", "Dataset")]
+
+  names(filtered_df) <- c("Description", "Dataset_ID")
 
   filtered_df
 
