@@ -15,6 +15,13 @@
 #' @export
 statswales_search <- function(search_text, lang.option = "en-gb") {
 
+  if(!(lang.option %in% c("english", "welsh"))) {
+
+    stop("Invalid language option")
+  }
+
+
+
   datasets <- jsonlite::fromJSON(
     paste0("http://open.statswales.gov.wales/",
            lang.option,
