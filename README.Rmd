@@ -25,7 +25,7 @@ devtools::install_github("jamie-ralph/statswalesr")
 
 The code below extracts data about [aircraft movement at Cardiff airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year) and the associated metadata.
 
-```{r example, message = FALSE, warning = FALSE, results="hide"}
+```{r example1, message = FALSE, warning = FALSE, results="hide"}
 library(statswalesr)
 
 metadata <- statswalesr::statswales_get_metadata("tran0003")
@@ -39,3 +39,13 @@ str(df)
 
 ```
 
+You can also search for datasets based on key terms. For example, if I wanted
+data on farming or agriculture I could do the following:
+
+```{r example2, message = FALSE, warning = FALSE, results="hide"}
+library(dplyr)
+
+farming_datasets <- statswales_search(c("farm*", "agri*"))
+
+glimpse(farming_datasets)
+```

@@ -46,3 +46,14 @@ str(df)
     ##  $ Year_SortOrder            : chr  "27" "21" "24" "29" ...
     ##  $ RowKey                    : chr  "0000000000000026" "0000000000000027" "0000000000000028" "0000000000000029" ...
     ##  $ PartitionKey              : chr  "0" "0" "0" "0" ...
+
+You can also search for datasets based on key terms. For example, if I
+wanted data on farming or agriculture I could do the following:
+
+``` r
+library(dplyr)
+
+farming_datasets <- statswales_search(c("farm*", "agri*"))
+
+glimpse(farming_datasets)
+```
