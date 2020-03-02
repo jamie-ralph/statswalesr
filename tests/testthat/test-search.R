@@ -1,0 +1,7 @@
+context("Search function returns a dataframe")
+
+test_search <- statswalesr::statswales_search("crop")
+
+test_that("valid search terms return a dataset", {
+          expect_true(is.data.frame(test_search))
+          })
