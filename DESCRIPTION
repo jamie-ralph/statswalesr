@@ -13,7 +13,8 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     jsonlite,
-    curl
+    curl,
+    magrittr
 RoxygenNote: 7.0.2
 Suggests: 
     testthat
