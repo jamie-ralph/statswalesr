@@ -46,9 +46,9 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
     if(print_progress == TRUE) {
 
-      i = i + 1
+      i = i + nrow(json_data$value)
 
-      message("Extracting data from next page (", i, ")")
+      message("Extracting data: ", i, " rows extracted")
 
     }
 
@@ -62,7 +62,8 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   df <- do.call(rbind, json_list)
 
-  message("Dataset was extracted successfully.")
+  message("Dataset extracted successfully with ", nrow(df), " rows and ",
+          ncol(df), " columns.")
 
   # Return the dataframe
 
