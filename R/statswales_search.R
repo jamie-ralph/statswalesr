@@ -25,8 +25,7 @@ statswales_search <- function(search_text) {
                      dplyr::filter(grepl(paste(search_text, collapse = "|"),
                      Description_ENG, ignore.case = T)) %>%
 
-                     dplyr::select(Description = Description_ENG,
-                     Dataset_ID = Dataset)
+                     dplyr::select(Description_ENG, Dataset)
 
 
   filtered_df
