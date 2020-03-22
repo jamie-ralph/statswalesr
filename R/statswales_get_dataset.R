@@ -62,6 +62,15 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   df <- do.call(rbind, json_list)
 
+  if("RowKey" %in% colnames(df)) {
+
+    df <- df %>%
+      dplyr::select(-RowKey) %>%
+      unique()
+
+  }
+
+
   message("Dataset extracted successfully with ", nrow(df), " rows and ",
           ncol(df), " columns.")
 
