@@ -13,6 +13,7 @@
 #' @examples
 #' data <- statswales_get_dataset("hlth0515")
 #'
+#' @importFrom rlang .data
 #' @export
 
 statswales_get_dataset <- function(id, print_progress = FALSE) {
@@ -67,7 +68,7 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
   if("RowKey" %in% colnames(df)) {
 
     df <- df %>%
-      dplyr::select(-RowKey) %>%
+      dplyr::select(-.data$RowKey) %>%
       unique()
 
   }

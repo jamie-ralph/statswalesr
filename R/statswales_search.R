@@ -10,6 +10,7 @@
 #' @examples
 #' crops_datasets <- statswales_search("*crops*")
 #'
+#' @importFrom rlang .data
 #' @export
 statswales_search <- function(search_text) {
 
@@ -23,9 +24,9 @@ statswales_search <- function(search_text) {
   filtered_df <- datasets_df %>%
 
                      dplyr::filter(grepl(paste(search_text, collapse = "|"),
-                     Description_ENG, ignore.case = T)) %>%
+                     .data$Description_ENG, ignore.case = T)) %>%
 
-                     dplyr::select(Description_ENG, Dataset)
+                     dplyr::select(.data$Description_ENG, .data$Dataset)
 
 
   filtered_df
