@@ -17,7 +17,9 @@
 
 statswales_get_dataset <- function(id, print_progress = FALSE) {
 
-  stopifnot(is.character(id) & length(id) == 1)
+  stopifnot('id should be a string'       = is.character(id),
+            'id should be a single value' = length(id) == 1
+  )
 
   # Define dataset URL --------------------------------------------------------
 
