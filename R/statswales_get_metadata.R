@@ -13,6 +13,9 @@
 #' @export
 statswales_get_metadata <- function(id) {
 
+  stopifnot("Only one id should be passed to statswales_get_metadata" = length(id) == 1,
+            "Dataset id must be a string"                             = is.character(id))
+
   # Define url containing metadata in JSON format
   url <- paste0("http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Dataset%20eq%20%27",
                 tolower(id), "%27")
