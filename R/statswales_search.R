@@ -14,7 +14,7 @@
 #' @export
 statswales_search <- function(search_text) {
 
-  stopifnot(is.character(search_text))
+  stopifnot("Search terms must be a string" = is.character(search_text))
 
   datasets <- jsonlite::fromJSON(
     "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Tag_ENG%20eq%20%27Title%27")
