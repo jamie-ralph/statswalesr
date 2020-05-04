@@ -29,6 +29,8 @@ statswales_search <- function(search_text) {
                      dplyr::select(.data$Description_ENG, .data$Dataset)
 
 
+  stopifnot("Search terms returned no datasets" = nrow(filtered_df) > 0)
+
   filtered_df
 
 
