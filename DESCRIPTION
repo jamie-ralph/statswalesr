@@ -1,7 +1,7 @@
 Package: statswalesr
 Type: Package
 Title: Provides Functions For Easily Extracting Data From StatsWales
-Version: 0.0.900
+Version: 0.0.9000
 Authors@R: as.person(
     "Jamie Ralph <jamesryanralph@outlook.com> [aut, cre]"
     )
