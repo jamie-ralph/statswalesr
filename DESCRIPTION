@@ -8,7 +8,7 @@ Authors@R: person(
     )
 Description: Download data from 'StatsWales' into R. Removes the need for the user to
     write their own loops when parsing data from the 'StatsWales' API. Provides functions
-    for datasets (<http://open.statswales.gov.wales/en-gb/dataset/>) and metadata
+    for datasets (<http://open.statswales.gov.wales/en-gb/dataset>) and metadata
     (<http://open.statswales.gov.wales/en-gb/discover/metadata>) endpoints. 
 License: MIT + file LICENSE
 Encoding: UTF-8
