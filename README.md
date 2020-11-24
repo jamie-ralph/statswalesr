@@ -1,4 +1,4 @@
-# statswalesr [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=master&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr) [![Travis build status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=main)](https://travis-ci.org/jamie-ralph/statswalesr)
+# statswalesr [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=mainr&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr) [![Travis build status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=main)](https://travis-ci.org/jamie-ralph/statswalesr)
 
 statswalesr is a package for downloading datasets and their associated
 metadata from StatsWales. This functionality is limited to datasets that
