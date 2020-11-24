@@ -2,12 +2,13 @@ Package: statswalesr
 Type: Package
 Title: Provides Functions For Easily Extracting Data From StatsWales
 Version: 0.1.0
-Authors@R: as.person(
-    "Jamie Ralph <jamesryanralph@outlook.com> [aut, cre]"
+Authors@R: person(
+    "Jamie", "Ralph", email = "jamesryanralph@outlook.com",
+    role = c("aut", "cre")
     )
 Description: A package containing useful functions for downloading data
     from StatsWales into R. The functions remove the need for the user to
-    write their own loops when parsing data from OData feeds. 
+    write their own loops when parsing data from StatsWales OData feeds. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
