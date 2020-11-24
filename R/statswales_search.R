@@ -17,16 +17,15 @@ statswales_search <- function(search_text) {
   stopifnot("Search terms must be a string" = is.character(search_text))
 
   datasets <- jsonlite::fromJSON(
-    "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Tag_ENG%20eq%20%27Title%27")
+    "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Tag_ENG%20eq%20%27Title%27"
+    )
 
   datasets_df <- datasets$value
 
-  filtered_df <- datasets_df %>%
+  filtered_df <-  dplyr::filter(datasets_df, grepl(paste(search_text, collapse = "|"),
+                          .data$Description_ENG, ignore.case = T))
 
-                     dplyr::filter(grepl(paste(search_text, collapse = "|"),
-                     .data$Description_ENG, ignore.case = T)) %>%
-
-                     dplyr::select(.data$Description_ENG, .data$Dataset)
+  filtered_df <- dplyr::select(filtered_df, .data$Description_ENG, .data$Dataset)
 
 
   stopifnot("Search terms returned no datasets" = nrow(filtered_df) > 0)

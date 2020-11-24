@@ -1,7 +1,7 @@
 Package: statswalesr
 Type: Package
 Title: Provides Functions For Easily Extracting Data From StatsWales
-Version: 0.0.9000
+Version: 0.1
 Authors@R: as.person(
     "Jamie Ralph <jamesryanralph@outlook.com> [aut, cre]"
     )
@@ -14,9 +14,8 @@ LazyData: true
 Imports:
     jsonlite,
     curl,
-    magrittr,
     dplyr,
     rlang
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     testthat

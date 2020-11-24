@@ -67,10 +67,9 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   if("RowKey" %in% colnames(df)) {
 
-    df <- df %>%
-      dplyr::select(-.data$RowKey) %>%
-      unique()
-
+    df <- unique(
+      dplyr::select(df, -.data$RowKey)
+    )
   }
 
 
