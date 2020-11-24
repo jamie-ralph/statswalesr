@@ -1,12 +1,12 @@
 Package: statswalesr
 Type: Package
-Title: Provides Functions For Easily Extracting Data From StatsWales
+Title: Provides Functions for Easily Extracting Data from StatsWales
 Version: 0.1.0
 Authors@R: person(
     "Jamie", "Ralph", email = "jamesryanralph@outlook.com",
     role = c("aut", "cre")
     )
-Description: A package containing useful functions for downloading data
+Description: A collection of useful functions for downloading data
     from StatsWales into R. The functions remove the need for the user to
     write their own loops when parsing data from StatsWales OData feeds. 
 License: MIT + file LICENSE
