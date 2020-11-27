@@ -6,8 +6,8 @@ test_that("get_dataset with a valid id returns a dataframe", {
   expect_true(is.data.frame(test_df))
   })
 
-test_that("invalid id returns an error", {
-  expect_error(statswalesr::statswales_get_dataset("XXXXX"))
+test_that("invalid id returns NULL", {
+  expect_null(statswalesr::statswales_get_dataset("XXXXX"))
   })
 
 test_that("numeric input returns an error", {
