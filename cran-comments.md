@@ -1,3 +1,9 @@
+## Submission Notes for v0.1.1
+
+* Functions now fail gracefully when the API cannot be accessed, the dataset id is invalid, or there is no internet connection
+
+
+
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
