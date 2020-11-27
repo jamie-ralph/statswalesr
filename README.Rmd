@@ -4,7 +4,14 @@ output:
     variant: gfm
 ---
 
-# statswalesr [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=master&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr) [![Travis build status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=master)](https://travis-ci.org/jamie-ralph/statswalesr)
+# statswalesr
+
+<!-- badges: start -->
+
+[![CRAN status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/web/packages/statswalesr/index.html)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=master&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr) [![Travis build status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=master)](https://travis-ci.org/jamie-ralph/statswalesr)
+
+<!-- badges: end -->
 
 statswalesr is a package for downloading datasets and their associated metadata
 from StatsWales. This functionality is limited to datasets that are available 
@@ -14,8 +21,14 @@ available under the Open Data tab.
 
 ## Installation
 
-**This package is still in development**. You can install the latest version 
-of statswalesr from GitHub with:
+statswalesr is now on CRAN. To install: 
+
+``` r
+install.packages("statswalesr")
+```
+
+
+You can install the development version of statswalesr from GitHub with:
 
 ``` r
 # install.packages("devtools")

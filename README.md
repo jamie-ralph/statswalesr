@@ -1,4 +1,15 @@
-# statswalesr [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=main&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr) [![Travis build status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=main)](https://travis-ci.org/jamie-ralph/statswalesr)
+# statswalesr
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/web/packages/statswalesr/index.html)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=master&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr)
+[![Travis build
+status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=master)](https://travis-ci.org/jamie-ralph/statswalesr)
+
+<!-- badges: end -->
 
 statswalesr is a package for downloading datasets and their associated
 metadata from StatsWales. This functionality is limited to datasets that
@@ -8,8 +19,13 @@ to your desired dataset, scrolling to the bottom, and checking that the
 
 ## Installation
 
-**This package is still in development**. You can install the latest
-version of statswalesr from GitHub with:
+statswalesr is now on CRAN. To install:
+
+``` r
+install.packages("statswalesr")
+```
+
+You can install the development version of statswalesr from GitHub with:
 
 ``` r
 # install.packages("devtools")
@@ -34,17 +50,16 @@ df <- statswalesr::statswales_get_dataset("tran0003")
 str(df)
 ```
 
-    ## 'data.frame':    169 obs. of  11 variables:
+    ## 'data.frame':    182 obs. of  10 variables:
     ##  $ Data                      : chr  "0" "0" "0" "0" ...
     ##  $ MovementType_Code         : chr  "29" "29" "29" "29" ...
     ##  $ MovementType_ItemName_ENG : chr  "Business Aviation" "Business Aviation" "Business Aviation" "Business Aviation" ...
     ##  $ MovementType_SortOrder    : chr  "29" "29" "29" "29" ...
     ##  $ MovementType_Hierarchy    : chr  "11" "11" "11" "11" ...
     ##  $ MovementType_ItemNotes_ENG: chr  "" "" "" "" ...
-    ##  $ Year_Code                 : chr  "2016" "2010" "2013" "2018" ...
-    ##  $ Year_ItemName_ENG         : chr  "2016" "2010" "2013" "2018" ...
-    ##  $ Year_SortOrder            : chr  "27" "21" "24" "29" ...
-    ##  $ RowKey                    : chr  "0000000000000026" "0000000000000027" "0000000000000028" "0000000000000029" ...
+    ##  $ Year_Code                 : chr  "2015" "2010" "2011" "2016" ...
+    ##  $ Year_ItemName_ENG         : chr  "2015" "2010" "2011" "2016" ...
+    ##  $ Year_SortOrder            : chr  "26" "21" "22" "27" ...
     ##  $ PartitionKey              : chr  "0" "0" "0" "0" ...
 
 You can also search for datasets based on key terms. For example, if I
@@ -60,7 +75,7 @@ farming_datasets <- statswales_search(c("farm*", "agri*"))
 glimpse(farming_datasets)
 ```
 
-    ## Observations: 29
-    ## Variables: 2
+    ## Rows: 29
+    ## Columns: 2
     ## $ Description_ENG <chr> "Children's services: Welfare/health summary", "Chi...
-    ## $ Dataset         <chr> "care0021", "care0022", "tran0169", "agri0200", "ag...
+    ## $ Dataset         <chr> "care0021", "care0022", "agri0200", "agri0201", "ag...
