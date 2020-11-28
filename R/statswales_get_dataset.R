@@ -64,6 +64,8 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   while ("odata.nextLink" %in% names(json_data)) {
 
+    # Print progress
+
     if(print_progress == TRUE) {
 
       i = i + nrow(json_data$value)
@@ -72,7 +74,21 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
     }
 
+    # Request data from next page
+
     next_page_request <- httr::GET(json_data$odata.nextLink, ua)
+
+    # If next page cannot be accessed, exit function
+
+    if (httr::http_error(next_page_request)) {
+
+      message("Could not download this dataset. The API might be unavailable.")
+
+      return(NULL)
+
+    }
+
+    # Extract data and append to main list object
 
     json_data <- jsonlite::fromJSON(httr::content(next_page_request, "text"))
 
