@@ -13,8 +13,8 @@
 #' @export
 statswales_get_metadata <- function(id) {
 
-  stopifnot("Only one id should be passed to statswales_get_metadata" = length(id) == 1,
-            "Dataset id must be a string"                             = is.character(id))
+  stopifnot("Dataset id should be a single value" = length(id) == 1,
+            "Dataset id must be a string" = is.character(id))
 
   # Check for internet connection --------------------------------------------
 
@@ -28,10 +28,12 @@ statswales_get_metadata <- function(id) {
                 tolower(id), "%27")
 
   # Extract metadata list ----------------------------------------------------
-  json_data <- jsonlite::fromJSON(url)
+  request <- httr::GET(url)
+
+  json_data <- jsonlite::fromJSON(httr::content(request, "text"))
 
   # Check that metadata has been returned ---------------------------------
-  if (nrow(json_data$value) < 1) {
+  if (length(json_data$value) < 1) {
     message("Metadata was not found. Check your dataset id for typos. If your dataset id is correct, the API might be unavailable.")
 
     return(NULL)

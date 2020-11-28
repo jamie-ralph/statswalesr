@@ -26,16 +26,18 @@ statswales_search <- function(search_text) {
 
   url <- "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Tag_ENG%20eq%20%27Title%27"
 
-  if (httr::http_error(httr::GET(url))) {
+  request <- httr::GET(url)
 
-    message("Could not access StatsWales API. The resource might be currently unavailable.")
+  if (httr::http_error(request)) {
+
+    message("Could not access StatsWales API. The API might be unavailable.")
 
     return(NULL)
 
   }
 
   # Extract information about available StatsWales datasets -------------------
-  datasets <- jsonlite::fromJSON(url)
+  datasets <- jsonlite::fromJSON(httr::content(request, "text"))
 
   datasets_df <- datasets$value
 

@@ -18,8 +18,8 @@
 
 statswales_get_dataset <- function(id, print_progress = FALSE) {
 
-  stopifnot('id should be a string'       = is.character(id),
-            'id should be a single value' = length(id) == 1
+  stopifnot('Dataset id must be a string'       = is.character(id),
+            'Dataset id should be a single value' = length(id) == 1
   )
 
   # Check for internet connection --------------------------------------------
@@ -34,8 +34,9 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
   url <- paste0("http://open.statswales.gov.wales/en-gb/dataset/", tolower(id))
 
   # Check that dataset resource is available ------------------------------
+  request <- httr::GET(url)
 
-  if (httr::http_error(httr::GET(url))) {
+  if (httr::http_error(request)) {
 
     message("Dataset was not found. Check your dataset id for typos. If your dataset id is correct, the API might be unavailable.")
 
@@ -48,7 +49,7 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   # Extract first page of data and add to a list object --------------------
 
-  json_data <- jsonlite::fromJSON(txt = url)
+  json_data <- jsonlite::fromJSON(httr::content(request, "text"))
 
   json_list = list(json_data$value)
 
@@ -67,7 +68,9 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
     }
 
-    json_data <- jsonlite::fromJSON(txt = json_data$odata.nextLink)
+    next_page_request <- httr::GET(json_data$odata.nextLink)
+
+    json_data <- jsonlite::fromJSON(httr::content(next_page_request, "text"))
 
     json_list <- c(json_list, list(json_data$value))
 
