@@ -3,11 +3,11 @@
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/web/packages/statswalesr/index.html)
+status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/package=statswalesr)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=dev&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr)
+status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=master&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr)
 [![Travis build
-status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=dev)](https://travis-ci.org/jamie-ralph/statswalesr)
+status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=master)](https://travis-ci.org/jamie-ralph/statswalesr)
 
 <!-- badges: end -->
 
