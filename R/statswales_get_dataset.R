@@ -11,7 +11,9 @@
 #' dataset in a dataframe. If the id is not valid, the function will return
 #' an error.
 #' @examples
+#' \dontrun{
 #' data <- statswales_get_dataset("hlth0515")
+#'}
 #'
 #' @importFrom rlang .data
 #' @export
