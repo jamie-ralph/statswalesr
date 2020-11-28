@@ -26,7 +26,9 @@ statswales_search <- function(search_text) {
 
   url <- "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Tag_ENG%20eq%20%27Title%27"
 
-  request <- httr::GET(url)
+  ua <- httr::user_agent("https://github.com/jamie-ralph/statswalesr")
+
+  request <- httr::GET(url, ua)
 
   if (httr::http_error(request)) {
 

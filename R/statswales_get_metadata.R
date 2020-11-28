@@ -28,7 +28,9 @@ statswales_get_metadata <- function(id) {
                 tolower(id), "%27")
 
   # Extract metadata list ----------------------------------------------------
-  request <- httr::GET(url)
+  ua <- httr::user_agent("https://github.com/jamie-ralph/statswalesr")
+
+  request <- httr::GET(url, ua)
 
   json_data <- jsonlite::fromJSON(httr::content(request, "text"))
 

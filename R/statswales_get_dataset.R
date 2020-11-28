@@ -33,8 +33,12 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   url <- paste0("http://open.statswales.gov.wales/en-gb/dataset/", tolower(id))
 
+  # Define user agent ----------------------------------------------------
+
+  ua <- httr::user_agent("https://github.com/jamie-ralph/statswalesr")
+
   # Check that dataset resource is available ------------------------------
-  request <- httr::GET(url)
+  request <- httr::GET(url, ua)
 
   if (httr::http_error(request)) {
 
@@ -68,7 +72,7 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
     }
 
-    next_page_request <- httr::GET(json_data$odata.nextLink)
+    next_page_request <- httr::GET(json_data$odata.nextLink, ua)
 
     json_data <- jsonlite::fromJSON(httr::content(next_page_request, "text"))
 

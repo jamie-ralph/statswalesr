@@ -2,8 +2,11 @@
 
 ## Corrections made
 
-* Functions now fail gracefully when the API cannot be accessed, the dataset id is invalid, or there is no internet connection. This should prevent the examples failing again if the 'StatsWales' API is unavailable. Apologies for not including this in first release.
-* There was a NOTE regarding 'curl' package being import but not used in the CRAN package checks. I've tried check() without importing 'curl' but the API calls do not work without it. 
+* Functions now fail gracefully when the API cannot be accessed, the dataset id is invalid, or there is no internet connection. Requests are initially made with httr package and then checked before parsing with jsonlite. This should prevent the examples failing again, as they did in CRAN checks, if the 'StatsWales' API is unavailable. Apologies for not including this in first release.
+* There was a NOTE regarding 'curl' package being imported, but not used, in the CRAN package checks. curl is now called to check for an internet connection which should fix this.
+* httr package is now imported - makes API requests and checks for http errors.
+* error messages for non-string type dataset id's are now consistent between functions.
+* User agent now added to all GET requests - this is the GitHub page for statswalesr as recommended [here.](https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html)
 
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs
