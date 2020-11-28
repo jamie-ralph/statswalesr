@@ -23,6 +23,8 @@ an error.
 progress when extracting a large dataset.
 }
 \examples{
+\dontrun{
 data <- statswales_get_dataset("hlth0515")
+}
 
 }
