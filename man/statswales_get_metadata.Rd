@@ -19,6 +19,8 @@ If the dataset id is valid, the output will be
 \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 }
 \examples{
+\dontrun{
 metadata <- statswales_get_metadata("hlth0515")
+}
 
 }

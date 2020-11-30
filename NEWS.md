@@ -1,3 +1,7 @@
+# statswalesr 0.1.1.9000
+
+* added more robust http error handling to statswales_get_metadata()
+
 # statswalesr 0.1.1
 
 * added more helpful error messages for http errors 

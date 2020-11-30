@@ -8,7 +8,10 @@
 #' @return A dataframe of StatsWales dataset titles and IDs.
 #'
 #' @examples
+#' \dontrun{
 #' crops_datasets <- statswales_search("*crops*")
+#'}
+#'
 #'
 #' @importFrom rlang .data
 #' @export
