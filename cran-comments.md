@@ -1,3 +1,12 @@
+# Submission Notes for v0.1.2
+
+Apologies for a second re-submission - will definitely be the last one. 
+
+## Corrections made
+
+* Made graceful failure for metadata function more robust. 
+* Added dontrun for all examples - will prevent failure if examples are run when API is down
+
 # Submission Notes for v0.1.1
 
 ## Corrections made
