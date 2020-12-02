@@ -1,7 +1,5 @@
 # Submission Notes for v0.1.2
 
-Apologies for a second re-submission - will definitely be the last one. 
-
 ## Corrections made
 
 * Made graceful failure for metadata function more robust. 
