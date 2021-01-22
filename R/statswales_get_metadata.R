@@ -8,9 +8,8 @@
 #'     the requested metadata in a dataframe. If the id is not
 #'     valid, the function will return an HTTP error.
 #' @examples
-#' \dontrun{
 #' metadata <- statswales_get_metadata("hlth0515")
-#'}
+#'
 #'
 #' @export
 statswales_get_metadata <- function(id) {

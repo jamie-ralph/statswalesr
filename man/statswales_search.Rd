@@ -18,9 +18,8 @@ A dataframe of StatsWales dataset titles and IDs.
 text input.
 }
 \examples{
-\dontrun{
 crops_datasets <- statswales_search("*crops*")
-}
+
 
 
 }
