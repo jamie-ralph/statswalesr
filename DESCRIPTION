@@ -12,7 +12,6 @@ Description: Download data from 'StatsWales' into R. Removes the need for the us
     (<http://open.statswales.gov.wales/en-gb/discover/metadata>) endpoints. 
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Imports:
     jsonlite,
     httr,
