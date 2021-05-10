@@ -39,8 +39,22 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
   ua <- httr::user_agent("https://github.com/jamie-ralph/statswalesr")
 
   # Check that dataset resource is available ------------------------------
-  request <- httr::GET(url, ua)
+  request <- tryCatch(
+    {
+      httr::GET(url, ua, httr::timeout(10))
+    },
+    error = function(cnd) {
+      return(NULL)
+    }
+  )
 
+  # Exit function if API didn't respond ------------------------------
+  if(is.null(request)) {
+    message("The StatsWales API did not respond in time and might be unavailable.")
+    return(NULL)
+  }
+
+  # Exit function if http error returned - else download data ----
   if (httr::http_error(request)) {
 
     message("Dataset was not found. Check your dataset id for typos. If your dataset id is correct, the API might be unavailable.")
@@ -75,11 +89,23 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
     }
 
-    # Request data from next page
+    # Request data from next page and exit if API stops responding ----
 
-    next_page_request <- httr::GET(json_data$odata.nextLink, ua)
+    next_page_request <- tryCatch(
+      {
+        httr::GET(json_data$odata.nextLink, ua, httr::timeout(10))
+      },
+      error = function(cnd) {
+        return(NULL)
+      }
+    )
 
-    # If next page cannot be accessed, exit function
+    if (is.null(next_page_request)) {
+      message("The StatsWales API did not respond in time and might be unavailable.")
+      return(NULL)
+    }
+
+    # If next page cannot be accessed, exit function ----
 
     if (httr::http_error(next_page_request)) {
 
@@ -89,7 +115,7 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
     }
 
-    # Extract data and append to main list object
+    # Extract data and append to main list object ----
 
     json_data <- jsonlite::fromJSON(httr::content(next_page_request, "text"))
 
@@ -97,7 +123,7 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   }
 
-  # rbind dataframes together and tell user the data is extracted
+  # rbind dataframes together and tell user the data is extracted ----
 
   df <- do.call(rbind, json_list)
 
@@ -112,7 +138,7 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
   message("Dataset extracted successfully with ", nrow(df), " rows and ",
           ncol(df), " columns.")
 
-  # Return the dataframe
+  # Return the dataframe ----
 
   df
 

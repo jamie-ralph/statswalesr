@@ -31,10 +31,23 @@ statswales_get_metadata <- function(id) {
   # Extract metadata list ----------------------------------------------------
   ua <- httr::user_agent("https://github.com/jamie-ralph/statswalesr")
 
-  request <- httr::GET(url, ua)
+  # Check resource is available ----
+  request <- tryCatch(
+    {
+      httr::GET(url, ua, httr::timeout(10))
+    },
+    error = function(cnd) {
+      return(NULL)
+    }
+  )
 
-  # Check request status
+  # Exit function if API didn't respond ----
+  if (is.null(request)) {
+    message("The StatsWales API did not respond in time and might be unavailable.")
+    return(NULL)
+  }
 
+  # Exit function if an HTTP error was returned ----
   if (httr::http_error(request)) {
 
     message("Metadata was not found. The API might be unavailable.")
@@ -44,7 +57,6 @@ statswales_get_metadata <- function(id) {
   }
 
   # Extract data from request object
-
   json_data <- jsonlite::fromJSON(httr::content(request, "text"))
 
   # Check that metadata has been returned ---------------------------------

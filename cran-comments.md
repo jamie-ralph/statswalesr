@@ -1,3 +1,12 @@
+# Submission Notes for v0.1.3
+
+## Corrections made
+* Removed LazyData argument from description file
+* Added timeout to all GET requests. If a response is not returned within 10 seconds the function exits gracefully. This accounts for occasions when the API is down or performing very slowly. This should also prevent examples failing if the API is down. 
+
+## R CMD check results
+* No errors, warnings, or notes
+
 # Submission Notes for v0.1.2
 
 ## Corrections made

@@ -24,14 +24,29 @@ statswales_search <- function(search_text) {
     return(NULL)
   }
 
-  # Check that metadata API is available -----------------------------
-
+  # Define URL and user agent -----------------------------
   url <- "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Tag_ENG%20eq%20%27Title%27"
 
   ua <- httr::user_agent("https://github.com/jamie-ralph/statswalesr")
 
-  request <- httr::GET(url, ua)
+  # Make API request ----
+  request <- tryCatch(
+    {
+      httr::GET(url, ua, httr::timeout(10))
+    },
+    error = function(cnd) {
+      return(NULL)
+    }
+  )
 
+  # Exit function if API did not respond ----
+  if (is.null(request)) {
+    message("The StatsWales API did not respond in time and might be unavailable.")
+    return(NULL)
+  }
+
+
+  # Exit function if an HTTP error was returned ----
   if (httr::http_error(request)) {
 
     message("Could not access StatsWales API. The API might be unavailable.")
