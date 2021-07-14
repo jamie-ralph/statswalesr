@@ -1,3 +1,7 @@
+# statswalesr 0.1.4
+
+* a couple of minor fixes have been made to the package's unit tests
+
 # statswalesr 0.1.3
 
 * added better error handling when API does not respond 

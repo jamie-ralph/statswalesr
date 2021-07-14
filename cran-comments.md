@@ -1,3 +1,8 @@
+# Submission Notes for v0.1.4
+
+## Corrections made
+* Fixed a test that didn't account for when the StatsWales API is down.
+
 # Submission Notes for v0.1.3
 
 ## Corrections made
