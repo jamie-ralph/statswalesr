@@ -56,13 +56,15 @@ statswales_get_dataset <- function(id, print_progress = FALSE) {
 
   # Exit function if http error returned - else download data ----
   if (httr::http_error(request)) {
-
     message("Dataset was not found. Check your dataset id for typos. If your dataset id is correct, the API might be unavailable.")
-
     return(NULL)
-
   }
-  else {
+
+  # Exit function if JSON data is not returned -----------------------------
+  if (httr::http_type(request) != "application/json") {
+    message("JSON data was not returned. Check your dataset id for typos. If your dataset id is correct, the API might be unavailable.")
+    return(NULL)
+  } else {
     message("Downloading StatsWales dataset...")
   }
 
