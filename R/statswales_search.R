@@ -55,6 +55,12 @@ statswales_search <- function(search_text) {
 
   }
 
+  # Exit function if JSON data is not returned -----------------------------
+  if (httr::http_type(request) != "application/json") {
+    message("JSON data was not returned. Check your dataset id for typos. If your dataset id is correct, the API might be unavailable.")
+    return(NULL)
+  }
+
   # Extract information about available StatsWales datasets -------------------
   datasets <- jsonlite::fromJSON(httr::content(request, "text"))
 
