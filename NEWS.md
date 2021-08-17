@@ -1,3 +1,7 @@
+# statswalesr 0.2.0
+
+* Welsh language options are now available across the three statswalesr functions
+
 # statswalesr 0.1.4
 
 * a couple of minor fixes have been made to the package's unit tests
