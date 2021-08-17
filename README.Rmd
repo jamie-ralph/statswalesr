@@ -9,8 +9,7 @@ output:
 <!-- badges: start -->
 
 [![CRAN status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/package=statswalesr)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jamie-ralph/statswalesr?branch=master&svg=true)](https://ci.appveyor.com/project/jamie-ralph/statswalesr) [![Travis build status](https://travis-ci.org/jamie-ralph/statswalesr.svg?branch=master)](https://travis-ci.org/jamie-ralph/statswalesr)
-
+[![R-CMD-check](https://github.com/jamie-ralph/statswalesr/workflows/R-CMD-check/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions)
 <!-- badges: end -->
 
 statswalesr is a package for downloading datasets and their associated metadata
