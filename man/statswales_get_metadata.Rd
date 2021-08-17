@@ -4,10 +4,12 @@
 \alias{statswales_get_metadata}
 \title{Retrieve metadata of a dataset from StatsWales}
 \usage{
-statswales_get_metadata(id)
+statswales_get_metadata(id, language = "english")
 }
 \arguments{
 \item{id}{A dataset id as a string}
+
+\item{language}{A string. Returns the metadata in either English ('english') or Welsh ('welsh')}
 }
 \value{
 If the dataset id is valid, the output will be
