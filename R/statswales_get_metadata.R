@@ -4,7 +4,8 @@
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 #'
 #' @param id A dataset id as a string
-#' @param language A string. Returns the metadata in either English ('english') or Welsh ('welsh')
+#' @param language A string. Returns the metadata in either English ('english') or Welsh ('welsh').
+#' The default is English.
 #' @return If the dataset id is valid, the output will be
 #'     the requested metadata in a dataframe. If the id is not
 #'     valid, the function will return an HTTP error.

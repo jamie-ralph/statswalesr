@@ -33,33 +33,34 @@ You can install the development version of statswalesr from GitHub with:
 # install.packages("devtools")
 devtools::install_github("jamie-ralph/statswalesr")
 ```
-## Example
+## Usage
 
 The code below extracts data about [aircraft movement at Cardiff airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year) and the associated metadata.
 
 ```{r example1, message = FALSE, warning = FALSE, results="hide"}
 library(statswalesr)
-
-metadata <- statswalesr::statswales_get_metadata("tran0003")
-
-df <- statswalesr::statswales_get_dataset("tran0003")
-```
-
-```{r}
-
-str(df)
-
-```
-
-You can also search for datasets based on key terms. For example, if I wanted
-data on farming or agriculture I could do the following:
-
-```{r example2, message = FALSE, warning = FALSE, results="hide"}
 library(dplyr)
 
-farming_datasets <- statswales_search(c("farm*", "agri*"))
+metadata <- statswales_get_metadata("tran0003")
+
+df <- statswales_get_dataset("tran0003")
+
 ```
 
-```{r}
+You can also search for datasets based on key terms. For example, to search for datasets related to farming and agriculture:
+
+```{r example2, message = FALSE, warning = FALSE, results="hide"}
+
+farming_datasets <- statswales_search(c("farm*", "agri*"))
+
 glimpse(farming_datasets)
 ```
+
+## Welsh language
+
+All statswalesr functions support Welsh language downloads using the **language** argument:
+
+```{r example3, message = FALSE, warning = FALSE, results="hide"}
+welsh_df <- statswales_get_dataset("tran0003", language = "welsh")
+```
+

@@ -1,3 +1,9 @@
+# Submission Notes for v0.2.0
+* Support has been added for Welsh language downloads, specified with the "language" parameter
+* Continuous integration has been migrated to GitHub actions
+* Each function checks that a JSON object has been returned from the API - if not, NULL is returned
+* Tests added for Welsh language downloads
+
 # Submission Notes for v0.1.4
 
 ## Corrections made

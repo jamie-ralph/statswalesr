@@ -11,7 +11,8 @@ statswales_get_dataset(id, print_progress = FALSE, language = "english")
 
 \item{print_progress}{logical. Should progress be printed in the console?}
 
-\item{language}{A string. Returns the dataset in either English ('english') or Welsh ('welsh').}
+\item{language}{A string. Returns the dataset in either English ('english') or Welsh ('welsh').
+The default is English.}
 }
 \value{
 If the dataset id is valid, the function will return the requested

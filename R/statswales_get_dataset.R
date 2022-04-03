@@ -8,6 +8,7 @@
 #' @param id A dataset id. Must be a single string.
 #' @param print_progress logical. Should progress be printed in the console?
 #' @param language A string. Returns the dataset in either English ('english') or Welsh ('welsh').
+#' The default is English.
 #' @return If the dataset id is valid, the function will return the requested
 #' dataset in a dataframe. If the id is not valid, the function will return
 #' an error.

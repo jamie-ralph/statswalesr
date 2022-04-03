@@ -28,7 +28,7 @@ You can install the development version of statswalesr from GitHub with:
 devtools::install_github("jamie-ralph/statswalesr")
 ```
 
-## Example
+## Usage
 
 The code below extracts data about [aircraft movement at Cardiff
 airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year)
@@ -36,42 +36,27 @@ and the associated metadata.
 
 ``` r
 library(statswalesr)
-
-metadata <- statswalesr::statswales_get_metadata("tran0003")
-
-df <- statswalesr::statswales_get_dataset("tran0003")
-```
-
-``` r
-str(df)
-```
-
-    ## 'data.frame':    195 obs. of  10 variables:
-    ##  $ Data                      : chr  "0" "0" "0" "0" ...
-    ##  $ MovementType_Code         : chr  "22" "27" "29" "27" ...
-    ##  $ MovementType_ItemName_ENG : chr  "Local Movements" "Official" "Business Aviation" "Official" ...
-    ##  $ MovementType_SortOrder    : chr  "22" "27" "29" "27" ...
-    ##  $ MovementType_Hierarchy    : chr  "10" "11" "11" "11" ...
-    ##  $ MovementType_ItemNotes_ENG: chr  "" "" "" "" ...
-    ##  $ Year_Code                 : chr  "2006" "2006" "2006" "2007" ...
-    ##  $ Year_ItemName_ENG         : chr  "2006" "2006" "2006" "2007" ...
-    ##  $ Year_SortOrder            : chr  "17" "17" "17" "18" ...
-    ##  $ PartitionKey              : chr  "0" "0" "0" "0" ...
-
-You can also search for datasets based on key terms. For example, if I
-wanted data on farming or agriculture I could do the following:
-
-``` r
 library(dplyr)
 
-farming_datasets <- statswales_search(c("farm*", "agri*"))
+metadata <- statswales_get_metadata("tran0003")
+
+df <- statswales_get_dataset("tran0003")
 ```
 
+You can also search for datasets based on key terms. For example, to
+search for datasets related to farming and agriculture:
+
 ``` r
+farming_datasets <- statswales_search(c("farm*", "agri*"))
+
 glimpse(farming_datasets)
 ```
 
-    ## Rows: 29
-    ## Columns: 2
-    ## $ Description_ENG <chr> "Children's services: Welfare/health summary", "Childr~
-    ## $ Dataset         <chr> "care0021", "care0022", "agri0200", "agri0201", "agri0~
+## Welsh language
+
+All statswalesr functions support Welsh language downloads using the
+**language** argument:
+
+``` r
+welsh_df <- statswales_get_dataset("tran0003", language = "welsh")
+```

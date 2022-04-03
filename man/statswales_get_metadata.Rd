@@ -9,7 +9,8 @@ statswales_get_metadata(id, language = "english")
 \arguments{
 \item{id}{A dataset id as a string}
 
-\item{language}{A string. Returns the metadata in either English ('english') or Welsh ('welsh')}
+\item{language}{A string. Returns the metadata in either English ('english') or Welsh ('welsh').
+The default is English.}
 }
 \value{
 If the dataset id is valid, the output will be

@@ -5,7 +5,8 @@
 #' text input.
 #'
 #' @param search_text A vector of search terms.
-#' @param language A string. Returns the metadata in either English ('english') or Welsh ('welsh')
+#' @param language A string. Returns the metadata in either English ('english') or Welsh ('welsh').
+#' The default is English.
 #' @return A dataframe of StatsWales dataset titles and IDs.
 #'
 #' @examples

@@ -9,7 +9,8 @@ statswales_search(search_text, language = "english")
 \arguments{
 \item{search_text}{A vector of search terms.}
 
-\item{language}{A string. Returns the metadata in either English ('english') or Welsh ('welsh')}
+\item{language}{A string. Returns the metadata in either English ('english') or Welsh ('welsh').
+The default is English.}
 }
 \value{
 A dataframe of StatsWales dataset titles and IDs.
