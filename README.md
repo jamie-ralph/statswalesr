@@ -36,7 +36,6 @@ and the associated metadata.
 
 ``` r
 library(statswalesr)
-library(dplyr)
 
 metadata <- statswales_get_metadata("tran0003")
 
@@ -47,10 +46,17 @@ You can also search for datasets based on key terms. For example, to
 search for datasets related to farming and agriculture:
 
 ``` r
+library(dplyr)
+
 farming_datasets <- statswales_search(c("farm*", "agri*"))
 
 glimpse(farming_datasets)
 ```
+
+    ## Rows: 29
+    ## Columns: 2
+    ## $ Description_ENG <chr> "Children's services: Welfare/health summary", "Childr~
+    ## $ Dataset         <chr> "care0021", "care0022", "agri0200", "agri0201", "agri0~
 
 ## Welsh language
 
