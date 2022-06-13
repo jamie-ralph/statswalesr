@@ -4,28 +4,23 @@ output:
     variant: gfm
 ---
 
-# statswalesr
+# statswalesr <a href='https://jamie-ralph.github.io/statswalesr/'><img src="man/figures/statswalesr.png" align="right" width="200"/></a>
 
 <!-- badges: start -->
 
-[![CRAN status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/package=statswalesr)
-[![R-CMD-check](https://github.com/jamie-ralph/statswalesr/workflows/R-CMD-check/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions)
+[![CRAN status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/package=statswalesr) [![R-CMD-check](https://github.com/jamie-ralph/statswalesr/workflows/R-CMD-check/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions)
+
 <!-- badges: end -->
 
-statswalesr is a package for downloading datasets and their associated metadata
-from StatsWales. This functionality is limited to datasets that are available 
-through the OData feed. You can check this by navigating to your desired 
-dataset, scrolling to the bottom, and checking that the "Dataset" link is 
-available under the Open Data tab.
+statswalesr is a package for downloading datasets and their associated metadata from StatsWales. This functionality is limited to datasets that are available through the OData feed. You can check this by navigating to your desired dataset, scrolling to the bottom, and checking that the "Dataset" link is available under the Open Data tab.
 
 ## Installation
 
-statswalesr is now on CRAN. To install: 
+statswalesr is now on CRAN. To install:
 
 ``` r
 install.packages("statswalesr")
 ```
-
 
 You can install the development version of statswalesr from GitHub with:
 
@@ -33,6 +28,7 @@ You can install the development version of statswalesr from GitHub with:
 # install.packages("devtools")
 devtools::install_github("jamie-ralph/statswalesr")
 ```
+
 ## Usage
 
 The code below extracts data about [aircraft movement at Cardiff airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year) and the associated metadata.
@@ -63,4 +59,3 @@ All statswalesr functions support Welsh language downloads using the **language*
 ```{r example3, message = FALSE, warning = FALSE, results="hide"}
 welsh_df <- statswales_get_dataset("tran0003", language = "welsh")
 ```
-
