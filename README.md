@@ -1,10 +1,11 @@
-# statswalesr
+# statswalesr <a href='https://jamie-ralph.github.io/statswalesr/'><img src="man/figures/statswalesr.png" align="right" width="200"/></a>
 
 <!-- badges: start -->
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/statswalesr)](https://cran.r-project.org/package=statswalesr)
 [![R-CMD-check](https://github.com/jamie-ralph/statswalesr/workflows/R-CMD-check/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions)
+
 <!-- badges: end -->
 
 statswalesr is a package for downloading datasets and their associated
@@ -55,8 +56,8 @@ glimpse(farming_datasets)
 
     ## Rows: 29
     ## Columns: 2
-    ## $ Description_ENG <chr> "Children's services: Welfare/health summary", "Childr~
-    ## $ Dataset         <chr> "care0021", "care0022", "agri0200", "agri0201", "agri0~
+    ## $ Description_ENG <chr> "Children's services: Welfare/health summary", "Childr…
+    ## $ Dataset         <chr> "care0021", "care0022", "agri0200", "agri0201", "agri0…
 
 ## Welsh language
 
