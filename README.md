@@ -70,4 +70,4 @@ welsh_df <- statswales_get_dataset("tran0003", language = "welsh")
 
 ------------------------------------------------------------------------
 
-*Hex sticker by Lew Furber*
+*Hex sticker by Lew Furber.*
