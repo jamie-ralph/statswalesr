@@ -67,3 +67,7 @@ All statswalesr functions support Welsh language downloads using the
 ``` r
 welsh_df <- statswales_get_dataset("tran0003", language = "welsh")
 ```
+
+------------------------------------------------------------------------
+
+*Hex sticker by Lew Furber*
