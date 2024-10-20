@@ -16,13 +16,14 @@ The default is English.}
 A dataframe of StatsWales dataset titles and IDs.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function was deprecated because StatsWales ended its OData
+service in August 2024.
+}
+\details{
 \code{statswales_search} returns a dataframe of dataset titles and IDs from
 \href{https://statswales.gov.wales}{StatsWales}, based on the user's
 text input.
 }
-\examples{
-crops_datasets <- statswales_search("*crops*")
-
-
-
-}
+\keyword{internal}

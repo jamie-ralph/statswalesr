@@ -14,15 +14,18 @@ The default is English.}
 }
 \value{
 If the dataset id is valid, the output will be
-    the requested metadata in a dataframe. If the id is not
-    valid, the function will return an HTTP error.
+the requested metadata in a dataframe. If the id is not
+valid, the function will return an HTTP error.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+}
+\details{
 \code{statswales_get_metadata} returns a dataframe containing metadata from
 \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 }
 \examples{
 metadata <- statswales_get_metadata("hlth0515")
 
-
 }
+\keyword{internal}

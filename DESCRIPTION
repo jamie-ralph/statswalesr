@@ -1,7 +1,7 @@
 Package: statswalesr
 Type: Package
 Title: Easily Extract Data from 'StatsWales'
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: person(
     "Jamie", "Ralph", email = "jamesryanralph@outlook.com",
     role = c("aut", "cre")
@@ -13,11 +13,12 @@ Description: Download data from 'StatsWales' into R. Removes the need for the us
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports:
-    jsonlite,
     httr,
+    readr,
     curl,
-    dplyr,
-    rlang
-RoxygenNote: 7.1.1
+    rlang,
+    lifecycle
+RoxygenNote: 7.3.2
 Suggests: 
     testthat
+Roxygen: list(markdown = TRUE)

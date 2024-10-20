@@ -1,6 +1,6 @@
 context("Only a single valid id returns a dataframe")
 
-test_df <- statswalesr::statswales_get_dataset("hlth0515")
+test_df <- statswalesr::statswales_get_dataset("LGFS0023")
 
 test_that("get_dataset with a valid id returns a dataframe, if API is available", {
   expect_true(is.data.frame(test_df) | is.null(test_df))
