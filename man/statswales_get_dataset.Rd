@@ -2,7 +2,7 @@
 % Please edit documentation in R/statswales_get_dataset.R
 \name{statswales_get_dataset}
 \alias{statswales_get_dataset}
-\title{Retrieves a dataset from the StatsWales}
+\title{Retrieves a dataset from StatsWales}
 \usage{
 statswales_get_dataset(id)
 }

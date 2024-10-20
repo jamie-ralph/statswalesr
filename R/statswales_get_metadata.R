@@ -15,6 +15,9 @@
 #' @description
 #' `r lifecycle::badge("deprecated")`
 #'
+#' This function was deprecated because StatsWales ended its OData
+#' service in August 2024.
+#'
 #' @keywords internal
 #' @export
 statswales_get_metadata <- function(id, language = 'english') {

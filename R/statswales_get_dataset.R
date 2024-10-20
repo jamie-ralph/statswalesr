@@ -1,4 +1,4 @@
-#' Retrieves a dataset from the StatsWales
+#' Retrieves a dataset from StatsWales
 #'
 #' \code{statswales_get_dataset} returns a dataframe from
 #' \href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
