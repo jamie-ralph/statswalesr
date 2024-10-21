@@ -1,9 +1,7 @@
 #' Retrieves a dataset from StatsWales
 #'
 #' \code{statswales_get_dataset} returns a dataframe from
-#' \href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
-#' \code{print_progress} argument can be set to \code{TRUE} to keep track of
-#' progress when extracting a large dataset.
+#' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 #'
 #' @param id A dataset id. Must be a single string.
 #' @return If the dataset id is valid, the function will return the requested

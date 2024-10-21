@@ -6,7 +6,7 @@
 \alias{statswalesr-package}
 \title{statswalesr: Easily Extract Data from 'StatsWales'}
 \description{
-Download data from 'StatsWales' into R. Removes the need for the user to write their own loops when parsing data from the 'StatsWales' API. Provides functions for datasets (\url{http://open.statswales.gov.wales/en-gb/dataset}) and metadata (\url{http://open.statswales.gov.wales/en-gb/discover/metadata}) endpoints.
+Download data from 'StatsWales' into R.
 }
 \author{
 \strong{Maintainer}: Jamie Ralph \email{jamesryanralph@outlook.com}

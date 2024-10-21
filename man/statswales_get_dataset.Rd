@@ -16,9 +16,7 @@ NULL.
 }
 \description{
 \code{statswales_get_dataset} returns a dataframe from
-\href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
-\code{print_progress} argument can be set to \code{TRUE} to keep track of
-progress when extracting a large dataset.
+\href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 }
 \examples{
 data <- statswales_get_dataset("LGFS0021")

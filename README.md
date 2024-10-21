@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 
+\[![version](https://img.shields.io/badge/version-1.2.3-blue)
 [![R-CMD-check](https://github.com/jamie-ralph/statswalesr/workflows/R-CMD-check/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions)
 
 <!-- badges: end -->
