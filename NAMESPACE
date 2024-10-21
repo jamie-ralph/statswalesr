@@ -3,4 +3,5 @@
 export(statswales_get_dataset)
 export(statswales_get_metadata)
 export(statswales_search)
+importFrom(lifecycle,deprecated)
 importFrom(rlang,.data)

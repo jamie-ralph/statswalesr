@@ -2,31 +2,24 @@
 % Please edit documentation in R/statswales_get_dataset.R
 \name{statswales_get_dataset}
 \alias{statswales_get_dataset}
-\title{Retrieves a dataset from the StatsWales OData API}
+\title{Retrieves a dataset from StatsWales}
 \usage{
-statswales_get_dataset(id, print_progress = FALSE, language = "english")
+statswales_get_dataset(id)
 }
 \arguments{
 \item{id}{A dataset id. Must be a single string.}
-
-\item{print_progress}{logical. Should progress be printed in the console?}
-
-\item{language}{A string. Returns the dataset in either English ('english') or Welsh ('welsh').
-The default is English.}
 }
 \value{
 If the dataset id is valid, the function will return the requested
 dataset in a dataframe. If the id is not valid, the function will return
-an error.
+NULL.
 }
 \description{
 \code{statswales_get_dataset} returns a dataframe from
-\href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
-\code{print_progress} argument can be set to \code{TRUE} to keep track of
-progress when extracting a large dataset.
+\href{https://statswales.gov.wales}{StatsWales} using a dataset id.
 }
 \examples{
-data <- statswales_get_dataset("hlth0515")
+data <- statswales_get_dataset("LGFS0021")
 
 
 }

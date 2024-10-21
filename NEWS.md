@@ -1,3 +1,9 @@
+# statswalesr 0.3.0
+
+* All functions deprecated except statswales_get_dataset() due to end
+of OData service
+* 'readr' and 'lifecycle' added as dependencies
+
 # statswalesr 0.2.0
 
 * Welsh language options are now available across the three statswalesr functions
