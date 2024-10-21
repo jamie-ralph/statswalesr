@@ -2,7 +2,7 @@
 
 * All functions deprecated except statswales_get_dataset() due to end
 of OData service
-* 'readr' added as a dependency
+* 'readr' and 'lifecycle' added as dependencies
 
 # statswalesr 0.2.0
 
