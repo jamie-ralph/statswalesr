@@ -9,7 +9,7 @@ output:
 <!-- badges: start -->
 
 ![version](https://img.shields.io/badge/version-0.3.0-orange) [![R-CMD-check](https://github.com/jamie-ralph/statswalesr/workflows/R-CMD-check/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions)
-
+[![R-CMD-check](https://github.com/jamie-ralph/statswalesr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 statswalesr is a package for downloading datasets from StatsWales.
