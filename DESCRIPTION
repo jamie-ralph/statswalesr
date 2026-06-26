@@ -1,23 +1,23 @@
 Package: statswalesr
 Type: Package
 Title: Easily Extract Data from 'StatsWales'
-Version: 0.2.0
+Version: 0.4.0
 Authors@R: person(
     "Jamie", "Ralph", email = "jamesryanralph@outlook.com",
     role = c("aut", "cre")
     )
-Description: Download data from 'StatsWales' into R. Removes the need for the user to
-    write their own loops when parsing data from the 'StatsWales' API. Provides functions
-    for datasets (<http://open.statswales.gov.wales/en-gb/dataset>) and metadata
-    (<http://open.statswales.gov.wales/en-gb/discover/metadata>) endpoints. 
+Description: Download data from the 'StatsWales' public API
+    (<https://api.stats.gov.wales/v1>) into R. Provides functions to list
+    datasets and topics, retrieve dataset views with optional filtering and
+    pagination, and download data in CSV, JSON, or Excel formats.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
 Imports:
-    jsonlite,
-    httr,
-    curl,
-    dplyr,
-    rlang
-RoxygenNote: 7.1.1
-Suggests: 
-    testthat
+    httr2,
+    jsonlite
+Suggests:
+    testthat (>= 3.0.0)
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0

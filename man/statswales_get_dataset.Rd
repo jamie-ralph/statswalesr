@@ -2,31 +2,64 @@
 % Please edit documentation in R/statswales_get_dataset.R
 \name{statswales_get_dataset}
 \alias{statswales_get_dataset}
-\title{Retrieves a dataset from the StatsWales OData API}
+\title{Retrieve a dataset from StatsWales}
 \usage{
-statswales_get_dataset(id, print_progress = FALSE, language = "english")
+statswales_get_dataset(
+  dataset_id,
+  lang = "en-gb",
+  page_number = 1,
+  page_size = 100,
+  filter = NULL,
+  all_pages = FALSE
+)
 }
 \arguments{
-\item{id}{A dataset id. Must be a single string.}
+\item{dataset_id}{A dataset UUID string. Use \code{\link[=statswales_list_datasets]{statswales_list_datasets()}} to
+find dataset IDs.}
 
-\item{print_progress}{logical. Should progress be printed in the console?}
+\item{lang}{Language for returned text. One of \code{"en-gb"} (default),
+\code{"en"}, \code{"cy-gb"}, or \code{"cy"}.}
 
-\item{language}{A string. Returns the dataset in either English ('english') or Welsh ('welsh').
-The default is English.}
+\item{page_number}{Page number to return. Default \code{1}. Ignored when
+\code{all_pages = TRUE}.}
+
+\item{page_size}{Number of rows per page. Default \code{100}.}
+
+\item{filter}{A list of filter criteria to apply. Each element should be a
+named list with \code{factTableColumn} and \code{values}. Use
+\code{\link[=statswales_get_filters]{statswales_get_filters()}} to discover available filter options.}
+
+\item{all_pages}{If \code{TRUE}, automatically fetches and combines all pages of
+results. Default \code{FALSE}.}
 }
 \value{
-If the dataset id is valid, the function will return the requested
-dataset in a dataframe. If the id is not valid, the function will return
-an error.
+A data frame of dataset rows. Returns \code{NULL} if the request fails.
 }
 \description{
-\code{statswales_get_dataset} returns a dataframe from
-\href{https://statswales.gov.wales}{StatsWales} using a dataset id. The
-\code{print_progress} argument can be set to \code{TRUE} to keep track of
-progress when extracting a large dataset.
+Returns a data frame containing data from a published dataset. By default
+returns the first page of results; set \code{all_pages = TRUE} to retrieve the
+complete dataset automatically.
 }
 \examples{
-data <- statswales_get_dataset("hlth0515")
+\dontrun{
+datasets <- statswales_list_datasets()
+id <- datasets$id[1]
 
+# First page only
+df <- statswales_get_dataset(id)
+
+# All pages
+df_full <- statswales_get_dataset(id, all_pages = TRUE)
+
+# With a filter
+filters <- statswales_get_filters(id)
+df_filtered <- statswales_get_dataset(
+  id,
+  filter = list(list(
+    factTableColumn = filters[[1]]$factTableColumn,
+    values = list(filters[[1]]$values$reference[1])
+  ))
+)
+}
 
 }

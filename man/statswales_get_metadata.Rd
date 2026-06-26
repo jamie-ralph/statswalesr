@@ -2,27 +2,29 @@
 % Please edit documentation in R/statswales_get_metadata.R
 \name{statswales_get_metadata}
 \alias{statswales_get_metadata}
-\title{Retrieve metadata of a dataset from StatsWales}
+\title{Get metadata for a dataset}
 \usage{
-statswales_get_metadata(id, language = "english")
+statswales_get_metadata(dataset_id, lang = "en-gb")
 }
 \arguments{
-\item{id}{A dataset id as a string}
+\item{dataset_id}{A dataset UUID string. Use \code{\link[=statswales_list_datasets]{statswales_list_datasets()}} to
+find dataset IDs.}
 
-\item{language}{A string. Returns the metadata in either English ('english') or Welsh ('welsh').
-The default is English.}
+\item{lang}{Language for returned text. One of \code{"en-gb"} (default),
+\code{"en"}, \code{"cy-gb"}, or \code{"cy"}.}
 }
 \value{
-If the dataset id is valid, the output will be
-    the requested metadata in a dataframe. If the id is not
-    valid, the function will return an HTTP error.
+A list containing dataset metadata. Returns \code{NULL} if the request
+fails or the dataset is not found.
 }
 \description{
-\code{statswales_get_metadata} returns a dataframe containing metadata from
-\href{https://statswales.gov.wales}{StatsWales} using a dataset id.
+Returns full metadata for a published dataset including revision history,
+publication dates, and dimension information.
 }
 \examples{
-metadata <- statswales_get_metadata("hlth0515")
-
+\dontrun{
+datasets <- statswales_list_datasets()
+meta <- statswales_get_metadata(datasets$id[1])
+}
 
 }
