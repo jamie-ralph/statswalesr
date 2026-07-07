@@ -2,7 +2,7 @@
 % Please edit documentation in R/statswales_get_dataset.R
 \name{statswales_get_dataset}
 \alias{statswales_get_dataset}
-\title{Retrieve a dataset from StatsWales}
+\title{Retrieve data for a dataset}
 \usage{
 statswales_get_dataset(
   dataset_id,
@@ -10,6 +10,9 @@ statswales_get_dataset(
   page_number = 1,
   page_size = 100,
   filter = NULL,
+  options = list(use_raw_column_names = FALSE, use_reference_values = FALSE,
+    data_value_type = "formatted"),
+  sort_by = NULL,
   all_pages = FALSE
 )
 }
@@ -17,48 +20,63 @@ statswales_get_dataset(
 \item{dataset_id}{A dataset UUID string. Use \code{\link[=statswales_list_datasets]{statswales_list_datasets()}} to
 find dataset IDs.}
 
-\item{lang}{Language for returned text. One of \code{"en-gb"} (default),
-\code{"en"}, \code{"cy-gb"}, or \code{"cy"}.}
+\item{lang}{Language for text values. One of \code{"en-gb"} (default), \code{"en"},
+\code{"cy-gb"}, or \code{"cy"}.}
 
-\item{page_number}{Page number to return. Default \code{1}. Ignored when
+\item{page_number}{Page of results to return. Default \code{1}. Ignored when
 \code{all_pages = TRUE}.}
 
-\item{page_size}{Number of rows per page. Default \code{100}.}
+\item{page_size}{Rows per page. Default \code{100}; max \code{10000}.}
 
-\item{filter}{A list of filter criteria to apply. Each element should be a
-named list with \code{factTableColumn} and \code{values}. Use
-\code{\link[=statswales_get_filters]{statswales_get_filters()}} to discover available filter options.}
+\item{filter}{A list of filter objects. Each element is a named list mapping
+a column name (from \code{\link[=statswales_get_filters]{statswales_get_filters()}}) to a character vector of
+reference codes. Multiple list elements use AND logic; multiple codes
+within one element use OR logic. Example:
+\code{list(list(Year = c("2020", "2021")), list(Area = c("W92000004")))}.}
 
-\item{all_pages}{If \code{TRUE}, automatically fetches and combines all pages of
-results. Default \code{FALSE}.}
+\item{options}{A named list of display options:
+\describe{
+\item{\code{use_raw_column_names}}{\code{FALSE} (default) returns human-readable
+column names; \code{TRUE} returns internal fact-table names.}
+\item{\code{use_reference_values}}{\code{FALSE} (default) returns human-readable
+values; \code{TRUE} returns reference codes.}
+\item{\code{data_value_type}}{One of \code{"raw"}, \code{"raw_extended"},
+\code{"formatted"} (default), \code{"formatted_extended"}, or
+\code{"with_note_codes"}.}
+}}
+
+\item{sort_by}{Optional sort order. Either a ready-made string in the API's
+\code{"column:direction"} format (e.g. \code{"Year:desc"}), or a named character
+vector such as \code{c(Year = "desc", Area = "asc")}. Directions are \code{"asc"} or
+\code{"desc"}.}
+
+\item{all_pages}{If \code{TRUE}, automatically fetches and row-binds all pages.
+Default \code{FALSE}.}
 }
 \value{
-A data frame of dataset rows. Returns \code{NULL} if the request fails.
+A data frame of dataset rows, or \code{NULL} if the request fails.
 }
 \description{
-Returns a data frame containing data from a published dataset. By default
-returns the first page of results; set \code{all_pages = TRUE} to retrieve the
-complete dataset automatically.
+Returns a data frame containing rows from a published dataset. Filters and
+display options are submitted to the API as a stored query; the same inputs
+always produce the same query ID so repeated calls are efficient.
 }
 \examples{
 \dontrun{
 datasets <- statswales_list_datasets()
 id <- datasets$id[1]
 
-# First page only
+# First page, human-readable (default)
 df <- statswales_get_dataset(id)
 
 # All pages
 df_full <- statswales_get_dataset(id, all_pages = TRUE)
 
-# With a filter
+# Filtered to specific years
 filters <- statswales_get_filters(id)
 df_filtered <- statswales_get_dataset(
   id,
-  filter = list(list(
-    factTableColumn = filters[[1]]$factTableColumn,
-    values = list(filters[[1]]$values$reference[1])
-  ))
+  filter = list(list(Year = c("2020", "2021")))
 )
 }
 

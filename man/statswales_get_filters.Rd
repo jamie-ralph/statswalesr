@@ -10,31 +10,46 @@ statswales_get_filters(dataset_id, lang = "en-gb")
 \item{dataset_id}{A dataset UUID string. Use \code{\link[=statswales_list_datasets]{statswales_list_datasets()}} to
 find dataset IDs.}
 
-\item{lang}{Language for returned text. One of \code{"en-gb"} (default),
-\code{"en"}, \code{"cy-gb"}, or \code{"cy"}.}
+\item{lang}{Language for returned text. One of \code{"en-gb"} (default), \code{"en"},
+\code{"cy-gb"}, or \code{"cy"}.}
 }
 \value{
-A list where each element corresponds to a filterable column and
+A list where each element corresponds to a filterable dimension and
 contains:
 \describe{
-\item{\code{factTableColumn}}{Internal column name used in filter queries.}
-\item{\code{columnName}}{Human-readable column name.}
+\item{\code{factTableColumn}}{Internal column name used in data queries.}
+\item{\code{columnName}}{Human-readable dimension name — use this as the key
+in filter objects.}
 \item{\code{values}}{A data frame of available filter values with columns
-\code{reference} and \code{description}.}
+\code{reference}, \code{description}, \code{parent}, and \code{level}. Hierarchical
+dimensions (e.g. Wales → local authorities → wards) are flattened into
+this data frame: \code{parent} holds the reference of the parent value (\code{NA}
+at the top level) and \code{level} is the 1-based depth. Any value's
+\code{reference} can be used in a filter.}
 }
 Returns \code{NULL} if the request fails.
 }
 \description{
-Returns a list of filter options that can be applied when retrieving a
-dataset with \code{\link[=statswales_get_dataset]{statswales_get_dataset()}}.
+Returns a list of filterable dimensions and their allowed values. Use the
+output to build the \code{filter} argument for \code{\link[=statswales_get_dataset]{statswales_get_dataset()}},
+\code{\link[=statswales_download_dataset]{statswales_download_dataset()}}, and \code{\link[=statswales_get_pivot]{statswales_get_pivot()}}.
 }
 \examples{
 \dontrun{
 datasets <- statswales_list_datasets()
 filters <- statswales_get_filters(datasets$id[1])
 
-# Inspect available values for the first filter
+# See available values for the first dimension
+filters[[1]]$columnName
 filters[[1]]$values
+
+# Use a filter value in a data query
+df <- statswales_get_dataset(
+  datasets$id[1],
+  filter = list(list(
+    Year = filters[[1]]$values$reference[1:2]
+  ))
+)
 }
 
 }

@@ -9,44 +9,51 @@ statswales_download_dataset(
   format = "csv",
   lang = "en-gb",
   path = NULL,
-  filter = NULL
+  filter = NULL,
+  options = list(use_raw_column_names = FALSE, use_reference_values = FALSE,
+    data_value_type = "formatted")
 )
 }
 \arguments{
 \item{dataset_id}{A dataset UUID string. Use \code{\link[=statswales_list_datasets]{statswales_list_datasets()}} to
 find dataset IDs.}
 
-\item{format}{File format. One of \code{"csv"} (default), \code{"json"}, or \code{"xlsx"}.}
+\item{format}{File format. One of \code{"csv"} (default) or \code{"xlsx"}.}
 
 \item{lang}{Language for the downloaded file. One of \code{"en-gb"} (default),
 \code{"en"}, \code{"cy-gb"}, or \code{"cy"}.}
 
-\item{path}{File path to save the download. If \code{NULL} (default), a
+\item{path}{File path for saving the download. If \code{NULL} (default), a
 temporary file is created automatically.}
 
-\item{filter}{A list of filter criteria to apply before downloading. Use
-\code{\link[=statswales_get_filters]{statswales_get_filters()}} to discover available filter options.}
+\item{filter}{Filter criteria in the same format as \code{\link[=statswales_get_dataset]{statswales_get_dataset()}}.}
+
+\item{options}{Display options in the same format as \code{\link[=statswales_get_dataset]{statswales_get_dataset()}}.}
 }
 \value{
 The path to the downloaded file, invisibly. Returns \code{NULL} if the
 download fails.
 }
 \description{
-Downloads a published dataset in a specified file format and saves it to
-disk. Useful for large datasets where you want to work with the raw file
-rather than loading the data directly into R.
+Downloads a published dataset as a file. The \code{filter} and \code{options}
+arguments work identically to \code{\link[=statswales_get_dataset]{statswales_get_dataset()}}.
 }
 \examples{
 \dontrun{
 datasets <- statswales_list_datasets()
 id <- datasets$id[1]
 
-# Download as CSV to a temporary file
+# Download full dataset as CSV
 path <- statswales_download_dataset(id)
 df <- read.csv(path)
 
-# Download as Excel to a specific location
-statswales_download_dataset(id, format = "xlsx", path = "data/my_dataset.xlsx")
+# Download filtered data as Excel
+statswales_download_dataset(
+  id,
+  format = "xlsx",
+  filter = list(list(Year = c("2022", "2023"))),
+  path = "my_data.xlsx"
+)
 }
 
 }
