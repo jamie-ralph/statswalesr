@@ -7,10 +7,14 @@ Authors@R: person(
     role = c("aut", "cre")
     )
 Description: Download data from the 'StatsWales' public API
-    (<https://api.stats.gov.wales/v1>) into R. Provides functions to list
-    datasets and topics, retrieve dataset views with optional filtering and
-    pagination, and download data in CSV, JSON, or Excel formats.
+    (<https://api.stats.gov.wales/v2>) into R. Provides functions to list,
+    search, and browse datasets by topic, retrieve data with optional
+    filtering, sorting, and pivoting, and download datasets as CSV or Excel
+    files.
 License: MIT + file LICENSE
+URL: https://github.com/jamie-ralph/statswalesr,
+    https://jamie-ralph.github.io/statswalesr/
+BugReports: https://github.com/jamie-ralph/statswalesr/issues
 Encoding: UTF-8
 Depends:
     R (>= 4.1.0)

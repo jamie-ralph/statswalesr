@@ -1,4 +1,4 @@
-# statswalesr <a href='https://jamie-ralph.github.io/statswalesr/'><img src="man/figures/statswalesr.png" align="right" width="200"/></a>
+# statswalesr <a href='https://jamie-ralph.github.io/statswalesr/'><img src="man/figures/statswalesr.png" align="right" width="200" alt="statswalesr hex sticker logo"/></a>
 
 <!-- badges: start -->
 
