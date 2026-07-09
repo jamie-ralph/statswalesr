@@ -28,9 +28,10 @@ return highlighted matches in \code{match_title} and \code{match_summary} column
 }
 \value{
 A data frame with columns \code{id}, \code{title}, \code{summary},
-\code{first_published_at}, \code{last_updated_at}, and \code{archived_at}. The \code{fts} and
-\code{fts_simple} modes also return \code{rank}, \code{match_title}, and \code{match_summary}.
-Returns \code{NULL} if the request fails.
+\code{first_published_at}, \code{last_updated_at}, and \code{archived_at}. Timestamp
+columns are \code{POSIXct} (UTC). The \code{fts} and \code{fts_simple} modes also return
+\code{rank}, \code{match_title}, and \code{match_summary}. Returns \code{NULL} if the request
+fails.
 }
 \description{
 Full-text search across dataset titles and summaries. Returns results

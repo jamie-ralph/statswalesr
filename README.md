@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 
-![version](https://img.shields.io/badge/version-0.5.0-orange)
+![version](https://img.shields.io/badge/version-1.0.0-orange)
 [![R-CMD-check](https://github.com/jamie-ralph/statswalesr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamie-ralph/statswalesr/actions/workflows/R-CMD-check.yaml)
 
 <!-- badges: end -->
@@ -23,7 +23,7 @@ devtools::install_github("jamie-ralph/statswalesr")
 ``` r
 library(statswalesr)
 
-# List all published datasets
+# List all published datasets (the full catalogue is fetched automatically)
 datasets <- statswales_list_datasets()
 
 # Full-text search
@@ -43,15 +43,20 @@ Dataset IDs are UUIDs returned by `statswales_list_datasets()` or
 ``` r
 id <- datasets$id[1]
 
-# First page, human-readable column names and values (default)
+# Up to 10,000 rows, human-readable column names and values (default)
 df <- statswales_get_dataset(id)
 
-# All pages
+# All rows, however large the dataset
 df_full <- statswales_get_dataset(id, all_pages = TRUE)
 
 # Welsh language
 df_cy <- statswales_get_dataset(id, lang = "cy-gb")
 ```
+
+Results are tidied for analysis by default: the API's internal `*_sort`
+columns are dropped, whitespace padding is stripped, and numeric columns
+(including the data values) are converted to numbers. Pass `tidy = FALSE` to
+get the API response as-is.
 
 ### Filter data
 

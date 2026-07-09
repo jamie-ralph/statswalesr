@@ -6,6 +6,7 @@ BASE_URL <- "https://api.stats.gov.wales/v2"
 
   req <- httr2::request(url) |>
     httr2::req_user_agent("statswalesr (https://github.com/jamie-ralph/statswalesr)") |>
+    httr2::req_retry(max_tries = 3) |>
     httr2::req_error(is_error = \(resp) FALSE)
 
   if (length(query) > 0) {
@@ -47,6 +48,7 @@ BASE_URL <- "https://api.stats.gov.wales/v2"
     httr2::req_method("POST") |>
     httr2::req_body_json(body, auto_unbox = TRUE) |>
     httr2::req_user_agent("statswalesr (https://github.com/jamie-ralph/statswalesr)") |>
+    httr2::req_retry(max_tries = 3) |>
     httr2::req_error(is_error = \(resp) FALSE)
 
   resp <- tryCatch(
@@ -125,6 +127,32 @@ BASE_URL <- "https://api.stats.gov.wales/v2"
     }
   }
   do.call(rbind, rows)
+}
+
+# Tidy a data frame returned by the data endpoint: drop the API's internal
+# *_sort columns, strip whitespace padding, and convert numeric-looking
+# columns (including comma-separated thousands) to numeric.
+.sw_tidy_data <- function(df) {
+  if (!is.data.frame(df) || ncol(df) == 0) return(df)
+  df <- df[, !grepl("_sort$", names(df)), drop = FALSE]
+  for (col in names(df)) {
+    if (!is.character(df[[col]])) next
+    x <- trimws(df[[col]])
+    x[x == ""] <- NA_character_
+    no_comma <- gsub(",", "", x, fixed = TRUE)
+    ok <- !is.na(no_comma)
+    if (any(ok) && all(grepl("^-?[0-9]+(\\.[0-9]+)?$", no_comma[ok]))) {
+      df[[col]] <- as.numeric(no_comma)
+    } else {
+      df[[col]] <- x
+    }
+  }
+  df
+}
+
+# Parse ISO 8601 timestamps (e.g. "2026-07-07T08:30:00.000Z") to POSIXct (UTC).
+.sw_parse_time <- function(x) {
+  as.POSIXct(x, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
 }
 
 # Build a DataOptions body for POST /data or POST /pivot.

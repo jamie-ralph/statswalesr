@@ -8,12 +8,13 @@ statswales_get_dataset(
   dataset_id,
   lang = "en-gb",
   page_number = 1,
-  page_size = 100,
+  page_size = 10000,
   filter = NULL,
   options = list(use_raw_column_names = FALSE, use_reference_values = FALSE,
     data_value_type = "formatted"),
   sort_by = NULL,
-  all_pages = FALSE
+  all_pages = FALSE,
+  tidy = TRUE
 )
 }
 \arguments{
@@ -26,7 +27,7 @@ find dataset IDs.}
 \item{page_number}{Page of results to return. Default \code{1}. Ignored when
 \code{all_pages = TRUE}.}
 
-\item{page_size}{Rows per page. Default \code{100}; max \code{10000}.}
+\item{page_size}{Rows per page. Default \code{10000} (the API maximum).}
 
 \item{filter}{A list of filter objects. Each element is a named list mapping
 a column name (from \code{\link[=statswales_get_filters]{statswales_get_filters()}}) to a character vector of
@@ -52,6 +53,11 @@ vector such as \code{c(Year = "desc", Area = "asc")}. Directions are \code{"asc"
 
 \item{all_pages}{If \code{TRUE}, automatically fetches and row-binds all pages.
 Default \code{FALSE}.}
+
+\item{tidy}{If \code{TRUE} (default), the result is cleaned for analysis: the
+API's internal \verb{*_sort} columns are dropped, whitespace padding is
+stripped, and numeric-looking columns (such as the data values) are
+converted to numeric. Set to \code{FALSE} to return the API response as-is.}
 }
 \value{
 A data frame of dataset rows, or \code{NULL} if the request fails.

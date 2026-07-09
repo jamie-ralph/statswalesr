@@ -6,7 +6,16 @@
 \alias{statswalesr-package}
 \title{statswalesr: Easily Extract Data from 'StatsWales'}
 \description{
-Download data from the 'StatsWales' public API (\url{https://api.stats.gov.wales/v1}) into R. Provides functions to list datasets and topics, retrieve dataset views with optional filtering and pagination, and download data in CSV, JSON, or Excel formats.
+Download data from the 'StatsWales' public API (\url{https://api.stats.gov.wales/v2}) into R. Provides functions to list, search, and browse datasets by topic, retrieve data with optional filtering, sorting, and pivoting, and download datasets as CSV or Excel files.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jamie-ralph/statswalesr}
+  \item \url{https://jamie-ralph.github.io/statswalesr/}
+  \item Report bugs at \url{https://github.com/jamie-ralph/statswalesr/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Jamie Ralph \email{jamesryanralph@outlook.com}

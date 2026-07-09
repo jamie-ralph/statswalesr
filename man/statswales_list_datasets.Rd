@@ -4,23 +4,21 @@
 \alias{statswales_list_datasets}
 \title{List all published datasets}
 \usage{
-statswales_list_datasets(lang = "en-gb", page_number = 1, page_size = 100)
+statswales_list_datasets(lang = "en-gb")
 }
 \arguments{
 \item{lang}{Language for returned text. One of \code{"en-gb"} (default),
 \code{"en"}, \code{"cy-gb"}, or \code{"cy"}.}
-
-\item{page_number}{Page number to return. Default \code{1}.}
-
-\item{page_size}{Number of datasets per page. Default \code{100}.}
 }
 \value{
 A data frame with columns \code{id}, \code{title}, \code{first_published_at},
-\code{last_updated_at}, and \code{archived_at}. Returns \code{NULL} if the request fails.
+\code{last_updated_at}, and \code{archived_at}. Timestamp columns are \code{POSIXct}
+(UTC). Returns \code{NULL} if the request fails.
 }
 \description{
 Returns a data frame of all published datasets available from the
-\href{https://api.stats.gov.wales/v1}{StatsWales public API}.
+\href{https://api.stats.gov.wales/v2}{StatsWales public API}. All pages are
+fetched automatically, so the full catalogue is returned.
 }
 \examples{
 \dontrun{

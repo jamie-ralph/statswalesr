@@ -1,7 +1,7 @@
 Package: statswalesr
 Type: Package
 Title: Easily Extract Data from 'StatsWales'
-Version: 0.5.0
+Version: 1.0.0
 Authors@R: person(
     "Jamie", "Ralph", email = "jamesryanralph@outlook.com",
     role = c("aut", "cre")

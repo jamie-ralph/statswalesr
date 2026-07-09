@@ -13,9 +13,10 @@
 #'   return highlighted matches in `match_title` and `match_summary` columns.
 #'
 #' @return A data frame with columns `id`, `title`, `summary`,
-#'   `first_published_at`, `last_updated_at`, and `archived_at`. The `fts` and
-#'   `fts_simple` modes also return `rank`, `match_title`, and `match_summary`.
-#'   Returns `NULL` if the request fails.
+#'   `first_published_at`, `last_updated_at`, and `archived_at`. Timestamp
+#'   columns are `POSIXct` (UTC). The `fts` and `fts_simple` modes also return
+#'   `rank`, `match_title`, and `match_summary`. Returns `NULL` if the request
+#'   fails.
 #'
 #' @examples
 #' \dontrun{
@@ -56,6 +57,9 @@ statswales_search <- function(keywords,
     archived_at        = vapply(items, function(x) .null_chr(x$archived_at), character(1)),
     stringsAsFactors   = FALSE
   )
+  df$first_published_at <- .sw_parse_time(df$first_published_at)
+  df$last_updated_at    <- .sw_parse_time(df$last_updated_at)
+  df$archived_at        <- .sw_parse_time(df$archived_at)
 
   if (mode %in% c("fts", "fts_simple")) {
     df$rank          <- vapply(items, function(x) x$rank %||% NA_real_, numeric(1))

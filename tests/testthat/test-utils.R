@@ -65,6 +65,73 @@ test_that("flatten expands hierarchical children with parent and level", {
   expect_equal(result$level, c(1L, 2L, 2L))
 })
 
+# --- .sw_tidy_data() ----------------------------------------------------------
+
+test_that("tidy_data drops *_sort columns", {
+  df <- data.frame(
+    Area = "Wales", Area_sort = "1", Period_sort = "347068800000",
+    stringsAsFactors = FALSE, check.names = FALSE
+  )
+  result <- .sw_tidy_data(df)
+  expect_equal(names(result), "Area")
+})
+
+test_that("tidy_data trims padding and converts numeric strings", {
+  df <- data.frame(
+    `Data values` = c("         271", "           4"),
+    Area = c("  Wales", "Cardiff  "),
+    stringsAsFactors = FALSE, check.names = FALSE
+  )
+  result <- .sw_tidy_data(df)
+  expect_identical(result[["Data values"]], c(271, 4))
+  expect_identical(result$Area, c("Wales", "Cardiff"))
+})
+
+test_that("tidy_data handles thousands separators", {
+  df <- data.frame(x = c("1,234", "56,789.5"), stringsAsFactors = FALSE)
+  expect_identical(.sw_tidy_data(df)$x, c(1234, 56789.5))
+})
+
+test_that("tidy_data leaves mixed text columns as character", {
+  df <- data.frame(
+    x = c("271", ".."),
+    y = c("Cardiff, Newport", "Swansea"),
+    stringsAsFactors = FALSE
+  )
+  result <- .sw_tidy_data(df)
+  expect_identical(result$x, c("271", ".."))
+  expect_identical(result$y, c("Cardiff, Newport", "Swansea"))
+})
+
+test_that("tidy_data converts empty strings to NA and still converts numerics", {
+  df <- data.frame(x = c("42", ""), stringsAsFactors = FALSE)
+  expect_identical(.sw_tidy_data(df)$x, c(42, NA))
+})
+
+test_that("tidy_data passes through non-data-frame input", {
+  expect_null(.sw_tidy_data(NULL))
+})
+
+test_that("tidy_data tolerates zero-row data frames", {
+  df <- data.frame(x = character(0), x_sort = character(0), stringsAsFactors = FALSE)
+  result <- .sw_tidy_data(df)
+  expect_equal(names(result), "x")
+  expect_equal(nrow(result), 0)
+})
+
+# --- .sw_parse_time() ---------------------------------------------------------
+
+test_that("parse_time parses ISO 8601 timestamps as UTC", {
+  result <- .sw_parse_time("2026-07-07T08:30:00.000Z")
+  expect_s3_class(result, "POSIXct")
+  expect_equal(attr(result, "tzone"), "UTC")
+  expect_equal(format(result, "%Y-%m-%d %H:%M"), "2026-07-07 08:30")
+})
+
+test_that("parse_time returns NA for NA input", {
+  expect_true(is.na(.sw_parse_time(NA_character_)))
+})
+
 # --- .sw_build_body() ---------------------------------------------------------
 
 test_that("build_body wraps an empty filter as an empty list", {

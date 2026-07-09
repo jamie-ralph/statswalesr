@@ -1,4 +1,4 @@
-# statswalesr 0.5.0
+# statswalesr 1.0.0
 
 * Migrated to StatsWales API v2 (`https://api.stats.gov.wales/v2`)
 * Added a `sort_by` argument to `statswales_get_dataset()`,
@@ -19,6 +19,17 @@
 * New `statswales_create_query()` to generate a reusable filter ID
 * New `statswales_get_query()` to inspect a stored query configuration
   (total row count, column mappings, applied filters)
+* `statswales_get_dataset()` results are now tidied for analysis by default:
+  internal `*_sort` columns are dropped, whitespace padding is stripped, and
+  numeric-looking columns (including data values) are converted to numeric.
+  Set `tidy = FALSE` for the raw API response
+* `statswales_get_dataset()` default `page_size` raised from 100 to 10000
+  (the API maximum), so most datasets arrive in a single request
+* `statswales_list_datasets()` now fetches the full dataset catalogue
+  automatically; the `page_number` and `page_size` arguments were removed
+* Timestamp columns from `statswales_list_datasets()` and
+  `statswales_search()` are now `POSIXct` (UTC) instead of character
+* All API requests now retry transient failures (up to 3 attempts)
 
 # statswalesr 0.4.0
 

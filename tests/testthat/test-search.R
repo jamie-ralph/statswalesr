@@ -1,18 +1,3 @@
-skip_if_api_unavailable <- function() {
-  result <- tryCatch(
-    httr2::req_perform(
-      httr2::req_error(
-        httr2::request("https://api.stats.gov.wales/v2"),
-        is_error = \(r) FALSE
-      )
-    ),
-    error = function(e) NULL
-  )
-  if (is.null(result) || httr2::resp_status(result) >= 400) {
-    skip("StatsWales API v2 is not available")
-  }
-}
-
 test_that("search returns a data frame with expected columns", {
   skip_if_api_unavailable()
   result <- statswales_search("hospital")

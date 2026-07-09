@@ -65,6 +65,7 @@ statswales_download_dataset <- function(dataset_id,
   req <- httr2::request(url) |>
     httr2::req_user_agent("statswalesr (https://github.com/jamie-ralph/statswalesr)") |>
     httr2::req_url_query(lang = lang, format = format) |>
+    httr2::req_retry(max_tries = 3) |>
     httr2::req_error(is_error = \(resp) FALSE)
 
   resp <- tryCatch(

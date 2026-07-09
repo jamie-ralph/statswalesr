@@ -10,7 +10,7 @@
 #'   `"cy-gb"`, or `"cy"`.
 #' @param page_number Page of results to return. Default `1`. Ignored when
 #'   `all_pages = TRUE`.
-#' @param page_size Rows per page. Default `100`; max `10000`.
+#' @param page_size Rows per page. Default `10000` (the API maximum).
 #' @param filter A list of filter objects. Each element is a named list mapping
 #'   a column name (from [statswales_get_filters()]) to a character vector of
 #'   reference codes. Multiple list elements use AND logic; multiple codes
@@ -32,6 +32,10 @@
 #'   `"desc"`.
 #' @param all_pages If `TRUE`, automatically fetches and row-binds all pages.
 #'   Default `FALSE`.
+#' @param tidy If `TRUE` (default), the result is cleaned for analysis: the
+#'   API's internal `*_sort` columns are dropped, whitespace padding is
+#'   stripped, and numeric-looking columns (such as the data values) are
+#'   converted to numeric. Set to `FALSE` to return the API response as-is.
 #'
 #' @return A data frame of dataset rows, or `NULL` if the request fails.
 #'
@@ -58,7 +62,7 @@
 statswales_get_dataset <- function(dataset_id,
                                    lang        = "en-gb",
                                    page_number = 1,
-                                   page_size   = 100,
+                                   page_size   = 10000,
                                    filter      = NULL,
                                    options     = list(
                                      use_raw_column_names = FALSE,
@@ -66,7 +70,8 @@ statswales_get_dataset <- function(dataset_id,
                                      data_value_type      = "formatted"
                                    ),
                                    sort_by     = NULL,
-                                   all_pages   = FALSE) {
+                                   all_pages   = FALSE,
+                                   tidy        = TRUE) {
   stopifnot(
     "dataset_id must be a string"       = is.character(dataset_id),
     "dataset_id must be a single value" = length(dataset_id) == 1
@@ -85,15 +90,17 @@ statswales_get_dataset <- function(dataset_id,
   sort_str <- .sw_format_sort(sort_by)
   if (!is.null(sort_str)) query$sort_by <- sort_str
 
-  if (all_pages) {
+  result <- if (all_pages) {
     message("Fetching all pages...")
     .sw_fetch_all_pages(path, query, page_size)
   } else {
-    result <- .sw_get(path, query, simplify = TRUE)
-    if (!is.null(total) && is.data.frame(result) && nrow(result) < total) {
-      message(nrow(result), " rows returned (", total, " total). ",
+    single <- .sw_get(path, query, simplify = TRUE)
+    if (!is.null(total) && is.data.frame(single) && nrow(single) < total) {
+      message(nrow(single), " rows returned (", total, " total). ",
               "Set all_pages = TRUE to retrieve the full dataset.")
     }
-    result
+    single
   }
+
+  if (tidy) .sw_tidy_data(result) else result
 }
