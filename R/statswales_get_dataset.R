@@ -26,6 +26,11 @@
 #'       `"formatted"` (default), `"formatted_extended"`, or
 #'       `"with_note_codes"`.}
 #'   }
+#'
+#'   Note: as of July 2026 the StatsWales API ignores `use_raw_column_names`
+#'   and `use_reference_values`, so output always uses human-readable column
+#'   names and values regardless of these settings. Only `data_value_type`
+#'   currently changes the output.
 #' @param sort_by Optional sort order. Either a ready-made string in the API's
 #'   `"column:direction"` format (e.g. `"Year:desc"`), or a named character
 #'   vector such as `c(Year = "desc", Area = "asc")`. Directions are `"asc"` or

@@ -44,7 +44,12 @@ values; \code{TRUE} returns reference codes.}
 \item{\code{data_value_type}}{One of \code{"raw"}, \code{"raw_extended"},
 \code{"formatted"} (default), \code{"formatted_extended"}, or
 \code{"with_note_codes"}.}
-}}
+}
+
+Note: as of July 2026 the StatsWales API ignores \code{use_raw_column_names}
+and \code{use_reference_values}, so output always uses human-readable column
+names and values regardless of these settings. Only \code{data_value_type}
+currently changes the output.}
 
 \item{sort_by}{Optional sort order. Either a ready-made string in the API's
 \code{"column:direction"} format (e.g. \code{"Year:desc"}), or a named character

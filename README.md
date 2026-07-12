@@ -94,6 +94,10 @@ df_raw <- statswales_get_dataset(
 )
 ```
 
+> **Note:** as of July 2026 the StatsWales API ignores `use_raw_column_names`
+> and `use_reference_values` — output always uses human-readable column names
+> and values. Only `data_value_type` currently changes the output.
+
 ### Pivot tables
 
 ``` r
