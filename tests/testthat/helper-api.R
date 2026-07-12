@@ -1,4 +1,5 @@
 skip_if_api_unavailable <- function() {
+  skip_on_cran()
   result <- tryCatch(
     httr2::req_perform(
       httr2::req_error(

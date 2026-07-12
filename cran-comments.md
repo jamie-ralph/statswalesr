@@ -28,6 +28,10 @@
 * GitHub Actions: windows-latest (R release), macos-latest (R release),
   ubuntu-latest (R devel, release, and oldrel-1)
 
+Tests that call the live StatsWales API are skipped on CRAN
+(skip_on_cran()) and run on GitHub Actions; offline unit and input
+validation tests run everywhere.
+
 ## revdepcheck results
 We checked 0 reverse dependencies, comparing R CMD check results across CRAN
 and dev versions of this package.
