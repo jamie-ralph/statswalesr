@@ -1,3 +1,24 @@
+# --- .null_chr() / %||% / .sw_validate_lang() ----------------------------------
+
+test_that("null_chr converts NULL to NA and coerces values to character", {
+  expect_identical(.null_chr(NULL), NA_character_)
+  expect_identical(.null_chr("a"), "a")
+  expect_identical(.null_chr(42), "42")
+})
+
+test_that("%||% returns the default only for NULL", {
+  expect_equal(NULL %||% 5, 5)
+  expect_equal(3 %||% 5, 3)
+  expect_equal(NA %||% 5, NA)
+})
+
+test_that("validate_lang accepts valid codes and rejects others", {
+  for (lang in c("en", "en-gb", "cy", "cy-gb")) {
+    expect_silent(.sw_validate_lang(lang))
+  }
+  expect_error(.sw_validate_lang("fr"), "`lang` must be one of")
+})
+
 # --- .sw_format_sort() --------------------------------------------------------
 
 test_that("format_sort returns NULL for NULL", {

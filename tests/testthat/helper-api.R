@@ -27,3 +27,31 @@ test_dataset_id <- local({
     id
   }
 })
+
+# Fetch the filter dimensions for the test dataset, hitting the API only once.
+test_filters <- local({
+  filters <- NULL
+  function() {
+    if (is.null(filters)) {
+      result <- statswales_get_filters(test_dataset_id())
+      if (is.null(result) || length(result) == 0) {
+        skip("Could not retrieve filters from the API")
+      }
+      filters <<- result
+    }
+    filters
+  }
+})
+
+# First filter dimension of the test dataset with more than one value, for
+# tests that need to filter or sort by a real column.
+test_filter_dim <- function() {
+  dim <- Find(
+    function(f) is.data.frame(f$values) && nrow(f$values) > 1,
+    test_filters()
+  )
+  if (is.null(dim)) {
+    skip("Test dataset has no filter dimension with multiple values")
+  }
+  dim
+}
