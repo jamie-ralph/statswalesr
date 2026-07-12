@@ -7,13 +7,12 @@
 
 <!-- badges: end -->
 
-statswalesr is an R package for accessing data from the [StatsWales public API v2](https://api.stats.gov.wales/v2).
+statswalesr is an R package for accessing data from the [StatsWales public API v2](https://api.stats.gov.wales/docs/?urls.primaryName=API+v2+%28English%29).
 
 ## Installation
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jamie-ralph/statswalesr")
+install.packages("statswalesr")
 ```
 
 ## Usage
@@ -43,11 +42,11 @@ Dataset IDs are UUIDs returned by `statswales_list_datasets()` or
 ``` r
 id <- datasets$id[1]
 
-# Up to 10,000 rows, human-readable column names and values (default)
+# Entire dataset, human-readable column names and values (default)
 df <- statswales_get_dataset(id)
 
-# All rows, however large the dataset
-df_full <- statswales_get_dataset(id, all_pages = TRUE)
+# A single page of rows, if you don't want everything
+df_page <- statswales_get_dataset(id, all_pages = FALSE, page_size = 100)
 
 # Welsh language
 df_cy <- statswales_get_dataset(id, lang = "cy-gb")

@@ -23,8 +23,10 @@
   internal `*_sort` columns are dropped, whitespace padding is stripped, and
   numeric-looking columns (including data values) are converted to numeric.
   Set `tidy = FALSE` for the raw API response
-* `statswales_get_dataset()` default `page_size` raised from 100 to 10000
-  (the API maximum), so most datasets arrive in a single request
+* `statswales_get_dataset()` now returns the entire dataset by default
+  (`all_pages = TRUE`); set `all_pages = FALSE` for single-page retrieval.
+  The default `page_size` was also raised from 100 to 10000 (the API
+  maximum), so most datasets arrive in a single request
 * `statswales_list_datasets()` now fetches the full dataset catalogue
   automatically; the `page_number` and `page_size` arguments were removed
 * Timestamp columns from `statswales_list_datasets()` and

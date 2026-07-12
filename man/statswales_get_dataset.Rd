@@ -13,7 +13,7 @@ statswales_get_dataset(
   options = list(use_raw_column_names = FALSE, use_reference_values = FALSE,
     data_value_type = "formatted"),
   sort_by = NULL,
-  all_pages = FALSE,
+  all_pages = TRUE,
   tidy = TRUE
 )
 }
@@ -24,8 +24,8 @@ find dataset IDs.}
 \item{lang}{Language for text values. One of \code{"en-gb"} (default), \code{"en"},
 \code{"cy-gb"}, or \code{"cy"}.}
 
-\item{page_number}{Page of results to return. Default \code{1}. Ignored when
-\code{all_pages = TRUE}.}
+\item{page_number}{Page of results to return. Default \code{1}. Only used when
+\code{all_pages = FALSE}.}
 
 \item{page_size}{Rows per page. Default \code{10000} (the API maximum).}
 
@@ -51,8 +51,9 @@ values; \code{TRUE} returns reference codes.}
 vector such as \code{c(Year = "desc", Area = "asc")}. Directions are \code{"asc"} or
 \code{"desc"}.}
 
-\item{all_pages}{If \code{TRUE}, automatically fetches and row-binds all pages.
-Default \code{FALSE}.}
+\item{all_pages}{If \code{TRUE} (default), automatically fetches and row-binds
+all pages so the entire dataset is returned. Set to \code{FALSE} to retrieve a
+single page controlled by \code{page_number} and \code{page_size}.}
 
 \item{tidy}{If \code{TRUE} (default), the result is cleaned for analysis: the
 API's internal \verb{*_sort} columns are dropped, whitespace padding is
@@ -72,11 +73,11 @@ always produce the same query ID so repeated calls are efficient.
 datasets <- statswales_list_datasets()
 id <- datasets$id[1]
 
-# First page, human-readable (default)
+# Entire dataset, human-readable (default)
 df <- statswales_get_dataset(id)
 
-# All pages
-df_full <- statswales_get_dataset(id, all_pages = TRUE)
+# A single page of 100 rows
+df_page <- statswales_get_dataset(id, all_pages = FALSE, page_size = 100)
 
 # Filtered to specific years
 filters <- statswales_get_filters(id)

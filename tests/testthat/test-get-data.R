@@ -56,7 +56,7 @@ test_that("get_filters errors on non-string input", {
 
 test_that("get_dataset returns a tidy data frame for valid UUID", {
   skip_if_api_unavailable()
-  result <- statswales_get_dataset(test_dataset_id())
+  result <- statswales_get_dataset(test_dataset_id(), all_pages = FALSE)
   expect_true(is.data.frame(result) || is.null(result))
   if (is.data.frame(result)) {
     expect_false(any(grepl("_sort$", names(result))))
@@ -69,7 +69,8 @@ test_that("get_dataset returns a tidy data frame for valid UUID", {
 
 test_that("get_dataset tidy = FALSE returns the raw API response", {
   skip_if_api_unavailable()
-  result <- statswales_get_dataset(test_dataset_id(), tidy = FALSE, page_size = 5)
+  result <- statswales_get_dataset(test_dataset_id(), tidy = FALSE,
+                                   all_pages = FALSE, page_size = 5)
   if (is.data.frame(result)) {
     expect_true(any(grepl("_sort$", names(result))))
   }

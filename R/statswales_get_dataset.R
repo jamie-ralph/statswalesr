@@ -8,8 +8,8 @@
 #'   find dataset IDs.
 #' @param lang Language for text values. One of `"en-gb"` (default), `"en"`,
 #'   `"cy-gb"`, or `"cy"`.
-#' @param page_number Page of results to return. Default `1`. Ignored when
-#'   `all_pages = TRUE`.
+#' @param page_number Page of results to return. Default `1`. Only used when
+#'   `all_pages = FALSE`.
 #' @param page_size Rows per page. Default `10000` (the API maximum).
 #' @param filter A list of filter objects. Each element is a named list mapping
 #'   a column name (from [statswales_get_filters()]) to a character vector of
@@ -30,8 +30,9 @@
 #'   `"column:direction"` format (e.g. `"Year:desc"`), or a named character
 #'   vector such as `c(Year = "desc", Area = "asc")`. Directions are `"asc"` or
 #'   `"desc"`.
-#' @param all_pages If `TRUE`, automatically fetches and row-binds all pages.
-#'   Default `FALSE`.
+#' @param all_pages If `TRUE` (default), automatically fetches and row-binds
+#'   all pages so the entire dataset is returned. Set to `FALSE` to retrieve a
+#'   single page controlled by `page_number` and `page_size`.
 #' @param tidy If `TRUE` (default), the result is cleaned for analysis: the
 #'   API's internal `*_sort` columns are dropped, whitespace padding is
 #'   stripped, and numeric-looking columns (such as the data values) are
@@ -44,11 +45,11 @@
 #' datasets <- statswales_list_datasets()
 #' id <- datasets$id[1]
 #'
-#' # First page, human-readable (default)
+#' # Entire dataset, human-readable (default)
 #' df <- statswales_get_dataset(id)
 #'
-#' # All pages
-#' df_full <- statswales_get_dataset(id, all_pages = TRUE)
+#' # A single page of 100 rows
+#' df_page <- statswales_get_dataset(id, all_pages = FALSE, page_size = 100)
 #'
 #' # Filtered to specific years
 #' filters <- statswales_get_filters(id)
@@ -70,7 +71,7 @@ statswales_get_dataset <- function(dataset_id,
                                      data_value_type      = "formatted"
                                    ),
                                    sort_by     = NULL,
-                                   all_pages   = FALSE,
+                                   all_pages   = TRUE,
                                    tidy        = TRUE) {
   stopifnot(
     "dataset_id must be a string"       = is.character(dataset_id),
@@ -91,7 +92,9 @@ statswales_get_dataset <- function(dataset_id,
   if (!is.null(sort_str)) query$sort_by <- sort_str
 
   result <- if (all_pages) {
-    message("Fetching all pages...")
+    if (!is.null(total) && total > page_size) {
+      message("Fetching ", total, " rows...")
+    }
     .sw_fetch_all_pages(path, query, page_size)
   } else {
     single <- .sw_get(path, query, simplify = TRUE)

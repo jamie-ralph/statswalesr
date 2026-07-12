@@ -14,7 +14,8 @@ test_that("list_topics returns results in Welsh", {
 
 test_that("get_dataset returns data in Welsh", {
   skip_if_api_unavailable()
-  result <- statswales_get_dataset(test_dataset_id(), lang = "cy-gb")
+  result <- statswales_get_dataset(test_dataset_id(), lang = "cy-gb",
+                                   all_pages = FALSE)
   expect_true(is.data.frame(result) || is.null(result))
 })
 
