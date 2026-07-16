@@ -15,6 +15,9 @@ skip_if_api_unavailable <- function() {
 }
 
 # Fetch one dataset ID for use across tests, hitting the API only once.
+# The catalogue can contain broken entries (e.g. datasets whose data endpoint
+# returns HTTP 500), so probe candidates until one responds to a data query
+# and is small enough to paginate over in a test.
 test_dataset_id <- local({
   id <- NULL
   function() {
@@ -23,7 +26,18 @@ test_dataset_id <- local({
       if (is.null(datasets) || nrow(datasets) == 0) {
         skip("Could not retrieve a dataset ID from the API")
       }
-      id <<- datasets$id[1]
+      for (candidate in utils::head(datasets$id, 10)) {
+        fid <- suppressMessages(statswales_create_query(candidate))
+        if (is.null(fid)) next
+        total <- suppressMessages(statswales_get_query(candidate, fid))$totalLines
+        if (!is.null(total) && total >= 10 && total <= 30000) {
+          id <<- candidate
+          break
+        }
+      }
+      if (is.null(id)) {
+        skip("No working test dataset found in the first 10 catalogue entries")
+      }
     }
     id
   }
