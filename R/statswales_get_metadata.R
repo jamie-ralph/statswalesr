@@ -1,27 +1,29 @@
-#' Retrieve metadata of a dataset from StatsWales
+#' Get metadata for a dataset
 #'
-#' \code{statswales_get_metadata} returns a dataframe containing metadata from
-#' \href{https://statswales.gov.wales}{StatsWales} using a dataset id.
+#' Returns full metadata for a published dataset including revision history,
+#' publication dates, and dimension information.
 #'
-#' @param id A dataset id as a string
-#' @param language A string. Returns the metadata in either English ('english') or Welsh ('welsh').
-#' The default is English.
-#' @return If the dataset id is valid, the output will be
-#'     the requested metadata in a dataframe. If the id is not
-#'     valid, the function will return an HTTP error.
+#' @param dataset_id A dataset UUID string. Use [statswales_list_datasets()] to
+#'   find dataset IDs.
+#' @param lang Language for returned text. One of `"en-gb"` (default),
+#'   `"en"`, `"cy-gb"`, or `"cy"`.
+#'
+#' @return A list containing dataset metadata. Returns `NULL` if the request
+#'   fails or the dataset is not found.
+#'
 #' @examples
-#' metadata <- statswales_get_metadata("hlth0515")
+#' \dontrun{
+#' datasets <- statswales_list_datasets()
+#' meta <- statswales_get_metadata(datasets$id[1])
+#' }
 #'
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' This function was deprecated because StatsWales ended its OData
-#' service in August 2024.
-#'
-#' @keywords internal
 #' @export
-statswales_get_metadata <- function(id, language = 'english') {
-  lifecycle::deprecate_warn("0.3.0", "statswales_get_metadata()")
-  return(NULL)
-}
+statswales_get_metadata <- function(dataset_id, lang = "en-gb") {
+  stopifnot(
+    "dataset_id must be a string"       = is.character(dataset_id),
+    "dataset_id must be a single value" = length(dataset_id) == 1
+  )
+  .sw_validate_lang(lang)
 
+  .sw_get(dataset_id, list(lang = lang))
+}

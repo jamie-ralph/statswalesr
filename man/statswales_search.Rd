@@ -2,28 +2,46 @@
 % Please edit documentation in R/statswales_search.R
 \name{statswales_search}
 \alias{statswales_search}
-\title{Search StatsWales datasets}
+\title{Search published datasets}
 \usage{
-statswales_search(search_text, language = "english")
+statswales_search(
+  keywords,
+  lang = "en-gb",
+  page_number = 1,
+  page_size = 100,
+  mode = "basic"
+)
 }
 \arguments{
-\item{search_text}{A vector of search terms.}
+\item{keywords}{Search query string.}
 
-\item{language}{A string. Returns the metadata in either English ('english') or Welsh ('welsh').
-The default is English.}
+\item{lang}{Language for returned text. One of \code{"en-gb"} (default), \code{"en"},
+\code{"cy-gb"}, or \code{"cy"}.}
+
+\item{page_number}{Page number to return. Default \code{1}.}
+
+\item{page_size}{Number of results per page. Default \code{100}.}
+
+\item{mode}{Search algorithm. One of \code{"basic"} (default), \code{"basic_split"},
+\code{"fts"}, \code{"fts_simple"}, or \code{"fuzzy"}. The \code{fts} and \code{fts_simple} modes
+return highlighted matches in \code{match_title} and \code{match_summary} columns.}
 }
 \value{
-A dataframe of StatsWales dataset titles and IDs.
+A data frame with columns \code{id}, \code{title}, \code{summary},
+\code{first_published_at}, \code{last_updated_at}, and \code{archived_at}. Timestamp
+columns are \code{POSIXct} (UTC). The \code{fts} and \code{fts_simple} modes also return
+\code{rank}, \code{match_title}, and \code{match_summary}. Returns \code{NULL} if the request
+fails.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+Full-text search across dataset titles and summaries. Returns results
+ranked by relevance.
+}
+\examples{
+\dontrun{
+results <- statswales_search("hospital")
+results_cy <- statswales_search("ysbyty", lang = "cy-gb")
+results_fuzzy <- statswales_search("transprt", mode = "fuzzy")
+}
 
-This function was deprecated because StatsWales ended its OData
-service in August 2024.
 }
-\details{
-\code{statswales_search} returns a dataframe of dataset titles and IDs from
-\href{https://statswales.gov.wales}{StatsWales}, based on the user's
-text input.
-}
-\keyword{internal}

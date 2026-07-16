@@ -2,24 +2,94 @@
 % Please edit documentation in R/statswales_get_dataset.R
 \name{statswales_get_dataset}
 \alias{statswales_get_dataset}
-\title{Retrieves a dataset from StatsWales}
+\title{Retrieve data for a dataset}
 \usage{
-statswales_get_dataset(id)
+statswales_get_dataset(
+  dataset_id,
+  lang = "en-gb",
+  page_number = 1,
+  page_size = 10000,
+  filter = NULL,
+  options = list(use_raw_column_names = FALSE, use_reference_values = FALSE,
+    data_value_type = "formatted"),
+  sort_by = NULL,
+  all_pages = TRUE,
+  tidy = TRUE
+)
 }
 \arguments{
-\item{id}{A dataset id. Must be a single string.}
+\item{dataset_id}{A dataset UUID string. Use \code{\link[=statswales_list_datasets]{statswales_list_datasets()}} to
+find dataset IDs.}
+
+\item{lang}{Language for text values. One of \code{"en-gb"} (default), \code{"en"},
+\code{"cy-gb"}, or \code{"cy"}.}
+
+\item{page_number}{Page of results to return. Default \code{1}. Only used when
+\code{all_pages = FALSE}.}
+
+\item{page_size}{Rows per page. Default \code{10000} (the API maximum).}
+
+\item{filter}{A list of filter objects. Each element is a named list mapping
+a column name (from \code{\link[=statswales_get_filters]{statswales_get_filters()}}) to a character vector of
+reference codes. Multiple list elements use AND logic; multiple codes
+within one element use OR logic. Example:
+\code{list(list(Year = c("2020", "2021")), list(Area = c("W92000004")))}.}
+
+\item{options}{A named list of display options:
+\describe{
+\item{\code{use_raw_column_names}}{\code{FALSE} (default) returns human-readable
+column names; \code{TRUE} returns internal fact-table names.}
+\item{\code{use_reference_values}}{\code{FALSE} (default) returns human-readable
+values; \code{TRUE} returns reference codes.}
+\item{\code{data_value_type}}{One of \code{"raw"}, \code{"raw_extended"},
+\code{"formatted"} (default), \code{"formatted_extended"}, or
+\code{"with_note_codes"}.}
+}
+
+Note: as of July 2026 the StatsWales API ignores \code{use_raw_column_names}
+and \code{use_reference_values}, so output always uses human-readable column
+names and values regardless of these settings. Only \code{data_value_type}
+currently changes the output.}
+
+\item{sort_by}{Optional sort order. Either a ready-made string in the API's
+\code{"column:direction"} format (e.g. \code{"Year:desc"}), or a named character
+vector such as \code{c(Year = "desc", Area = "asc")}. Directions are \code{"asc"} or
+\code{"desc"}.}
+
+\item{all_pages}{If \code{TRUE} (default), automatically fetches and row-binds
+all pages so the entire dataset is returned. Set to \code{FALSE} to retrieve a
+single page controlled by \code{page_number} and \code{page_size}.}
+
+\item{tidy}{If \code{TRUE} (default), the result is cleaned for analysis: the
+API's internal \verb{*_sort} columns are dropped, whitespace padding is
+stripped, and numeric-looking columns (such as the data values) are
+converted to numeric. Set to \code{FALSE} to return the API response as-is.}
 }
 \value{
-If the dataset id is valid, the function will return the requested
-dataset in a dataframe. If the id is not valid, the function will return
-NULL.
+A data frame of dataset rows, or \code{NULL} if the request fails.
 }
 \description{
-\code{statswales_get_dataset} returns a dataframe from
-\href{https://statswales.gov.wales}{StatsWales} using a dataset id.
+Returns a data frame containing rows from a published dataset. Filters and
+display options are submitted to the API as a stored query; the same inputs
+always produce the same query ID so repeated calls are efficient.
 }
 \examples{
-data <- statswales_get_dataset("LGFS0021")
+\dontrun{
+datasets <- statswales_list_datasets()
+id <- datasets$id[1]
 
+# Entire dataset, human-readable (default)
+df <- statswales_get_dataset(id)
+
+# A single page of 100 rows
+df_page <- statswales_get_dataset(id, all_pages = FALSE, page_size = 100)
+
+# Filtered to specific years
+filters <- statswales_get_filters(id)
+df_filtered <- statswales_get_dataset(
+  id,
+  filter = list(list(Year = c("2020", "2021")))
+)
+}
 
 }
